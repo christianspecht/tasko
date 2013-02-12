@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="256"
+   height="256"
+   id="svg3132"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="C:\Dev\Code\tasko\img\logo35x35.png"
+   inkscape:export-xdpi="12.599972"
+   inkscape:export-ydpi="12.599972">
+  <title
+     id="title3140">Tasko logo</title>
+  <defs
+     id="defs3134">
+    <linearGradient
+       id="linearGradient4032">
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="0"
+         id="stop4034" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0.58823532;"
+         offset="1"
+         id="stop4036" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3970">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3972" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop3974" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3935">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop3937" />
+      <stop
+         style="stop-color:#339933;stop-opacity:0;"
+         offset="1"
+         id="stop3939" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3907">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop3909" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop3911" />
+    </linearGradient>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 128 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="256 : 128 : 1"
+       inkscape:persp3d-origin="128 : 85.333333 : 1"
+       id="perspective3025" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3935"
+       id="linearGradient3945"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0,0.6944444,-7.1038417,0,313.71457,764.0288)"
+       x1="57"
+       y1="26.25"
+       x2="111.05331"
+       y2="26.25" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4032"
+       id="radialGradient4038"
+       cx="386.5"
+       cy="840.36218"
+       fx="386.5"
+       fy="840.36218"
+       r="125"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-259.0275,84.718747)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="69.935137"
+     inkscape:cy="123.26122"
+     inkscape:document-units="pt"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1680"
+     inkscape:window-height="978"
+     inkscape:window-x="-4"
+     inkscape:window-y="148"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3137">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Tasko logo</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Christian Specht</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>https://bitbucket.org/christianspecht/tasko/raw/tip/license.txt</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <cc:license
+           rdf:resource="https://bitbucket.org/christianspecht/tasko/raw/tip/license.txt" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-796.36218)">
+    <rect
+       style="fill:#339933;fill-opacity:1;stroke:none"
+       id="rect3041"
+       width="250"
+       height="250"
+       x="2.472265"
+       y="800.08148"
+       ry="57.08284" />
+    <rect
+       style="opacity:0.5;fill:url(#radialGradient4038);fill-opacity:1;stroke:none"
+       id="rect3041-8"
+       width="250"
+       height="250"
+       x="2.4725001"
+       y="800.08093"
+       ry="57.08284" />
+    <path
+       style="fill:url(#linearGradient3945);fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1"
+       d="m 241.25,841.11218 c 0,20.775 -22.50249,37.5 -34.57741,37.5 l -158.867705,0 C 35.72997,878.61218 14.25,861.24063 14.25,840.46563 c 0,-20.775 21.47997,-36.85345 33.554885,-36.85345 l 158.867705,0 c 12.07492,0 34.57741,16.725 34.57741,37.5 z"
+       id="rect3933"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="sssssss" />
+    <g
+       id="g4189">
+      <g
+         id="g4150">
+        <rect
+           style="fill:none;stroke:#ffffff;stroke-width:4.5454545;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           id="rect3761"
+           width="45.454544"
+           height="45.454544"
+           x="52.272728"
+           y="842.13489"
+           rx="3.9374244" />
+        <rect
+           style="fill:#ffffff;fill-opacity:1;stroke:none"
+           id="rect3814"
+           width="93.75"
+           height="5.5"
+           x="118.75"
+           y="884.36218"
+           ry="2.75" />
+      </g>
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path3892"
+         d="m 62,854.86218 c 6.666667,7.83333 8.333333,15.66667 12.5,23.5 19.604176,-28.57647 27.07849,-46.25961 50.5,-60"
+         style="fill:none;stroke:#ffffff;stroke-width:8.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <g
+         id="g4150-6"
+         transform="translate(-7.1525574e-7,68.749997)">
+        <rect
+           style="fill:none;stroke:#ffffff;stroke-width:4.5454545;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           id="rect3761-6"
+           width="45.454544"
+           height="45.454544"
+           x="52.272728"
+           y="842.13489"
+           rx="3.9374244" />
+        <rect
+           style="fill:#ffffff;fill-opacity:1;stroke:none"
+           id="rect3814-2"
+           width="93.75"
+           height="5.5"
+           x="118.75"
+           y="884.36218"
+           ry="2.75" />
+      </g>
+      <g
+         id="g4150-3"
+         transform="translate(-7.1525574e-7,137.5)">
+        <rect
+           style="fill:none;stroke:#ffffff;stroke-width:4.5454545;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           id="rect3761-8"
+           width="45.454544"
+           height="45.454544"
+           x="52.272728"
+           y="842.13489"
+           rx="3.9374244" />
+        <rect
+           style="fill:#ffffff;fill-opacity:1;stroke:none"
+           id="rect3814-26"
+           width="93.75"
+           height="5.5"
+           x="118.75"
+           y="884.36218"
+           ry="2.75" />
+      </g>
+    </g>
+  </g>
+</svg>
