@@ -23,3 +23,10 @@ It comes with a server backend that you have to host yourself, on your own serve
 ### License
 
 Tasko is licensed under the MIT License. See [License.txt](https://bitbucket.org/christianspecht/tasko/raw/tip/License.txt) for details.
+
+---
+
+### Project Info
+
+<script type="text/javascript" src="http://www.ohloh.net/p/633484/widgets/project_basic_stats.js"></script>  
+<script type="text/javascript" src="http://www.ohloh.net/p/633484/widgets/project_languages.js"></script>
