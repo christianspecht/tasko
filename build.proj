@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Start">
+
+
+	<!-- Variables -->
+	<PropertyGroup>
+
+		<!-- Release Folder -->
+		<!-- To change the output folder, use the following parameter: /p:BuildDir=C:\BuildTest-->
+		<ReleaseDir>release</ReleaseDir>
+		<ServerReleaseDir>$(ReleaseDir)\server-bin</ServerReleaseDir>
+
+		<!-- Build Folder -->
+		<ServerOutDir>src\Tasko.Server\bin</ServerOutDir>
+
+	</PropertyGroup>
+
+
+	<!-- "Autostart" -->
+	<Target Name="Start">
+		<CallTarget Targets="DeleteFolders"/>
+		<CallTarget Targets="Build"/>
+		<CallTarget Targets="CopyRelease"/>
+	</Target>
+
+
+	<!-- delete folder -->
+	<Target Name="DeleteFolders">
+		<RemoveDir Directories="$(ReleaseDir)"/>
+	</Target>
+
+
+	<!-- compile solution as release -->
+	<Target Name="Build">
+		<MSBuild Projects="src\Tasko.sln" Properties="Configuration=Release"/>
+	</Target>
+
+
+	<!-- copy files to release folder -->
+	<Target Name="CopyRelease">
+		<MakeDir Directories="$(ServerReleaseDir)"/>
+		<ItemGroup>
+			<ReleaseFiles
+				Include="$(ServerOutDir)\*.*"
+				Exclude="$(ServerOutDir)\*.pdb">
+			</ReleaseFiles>
+		</ItemGroup>
+		<Copy SourceFiles="@(ReleaseFiles)" DestinationFolder="$(ServerReleaseDir)"/>
+	</Target>
+
+
+</Project>
