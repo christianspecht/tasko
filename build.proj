@@ -13,13 +13,27 @@
 		<!-- Build Folder -->
 		<ServerOutDir>src\Tasko.Server\bin</ServerOutDir>
 
+		<!-- run unit tests? -->
+		<RunTests>0</RunTests>
+
+		<!-- Build Folder for test assembly -->
+		<TestOutDir>src\Tasko.Tests\bin\Release</TestOutDir>
+
+		<!-- path to NUnit runner -->
+		<TestNUnitDir>src\packages\NUnit.Runners.2.6.2\tools</TestNUnitDir>
+
+		<!-- path to MSBuild Community tasks -->
+		<MSBuildCommunityTasksPath>..\Build</MSBuildCommunityTasksPath>
+
 	</PropertyGroup>
 
+	<Import Project="src\Build\MSBuild.Community.Tasks.Targets" />
 
 	<!-- "Autostart" -->
 	<Target Name="Start">
 		<CallTarget Targets="DeleteFolders"/>
 		<CallTarget Targets="Build"/>
+		<CallTarget Condition="$(RunTests) == '1'" Targets="Test"/>
 		<CallTarget Targets="CopyRelease"/>
 	</Target>
 
@@ -33,6 +47,15 @@
 	<!-- compile solution as release -->
 	<Target Name="Build">
 		<MSBuild Projects="src\Tasko.sln" Properties="Configuration=Release"/>
+	</Target>
+
+
+	<!-- run unit tests -->
+	<Target Name="Test">
+		<CreateItem Include="$(TestOutDir)\*.Tests.dll">
+			<Output TaskParameter="Include" ItemName="TestAssembly" />
+		</CreateItem>
+		<NUnit ToolPath="$(TestNUnitDir)" DisableShadowCopy="true" Assemblies="@(TestAssembly)" Force32Bit="True" />
 	</Target>
 
 
