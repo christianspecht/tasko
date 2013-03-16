@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Web Developer Express 2010
+# Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasko.Server", "Tasko.Server\Tasko.Server.csproj", "{AA43FD21-3F75-468F-9EC7-21C53D181CAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasko.Tests", "Tasko.Tests\Tasko.Tests.csproj", "{985AF5DD-A361-43B4-9C8B-94120B44A514}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{AA43FD21-3F75-468F-9EC7-21C53D181CAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA43FD21-3F75-468F-9EC7-21C53D181CAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA43FD21-3F75-468F-9EC7-21C53D181CAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{985AF5DD-A361-43B4-9C8B-94120B44A514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{985AF5DD-A361-43B4-9C8B-94120B44A514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{985AF5DD-A361-43B4-9C8B-94120B44A514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{985AF5DD-A361-43B4-9C8B-94120B44A514}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
