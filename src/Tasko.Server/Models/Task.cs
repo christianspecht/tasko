@@ -11,6 +11,17 @@ namespace Tasko.Server.Models
         private string description;
 
         /// <summary>
+        /// Creates a new task
+        /// </summary>
+        /// <param name="description">Description</param>
+        /// <param name="category">First category</param>
+        public Task(string description, string category)
+        {
+            this.Description = description;
+            this.AddCategory(category);
+        }
+
+        /// <summary>
         /// Id (internal, is set by RavenDB)
         /// </summary>
         public int Id { get; private set; }
@@ -39,17 +50,6 @@ namespace Tasko.Server.Models
         /// List of categories (readonly, use AddCategory to write)
         /// </summary>
         public List<string> Categories { get; private set; }
-
-        /// <summary>
-        /// Creates a new task
-        /// </summary>
-        /// <param name="description">Description</param>
-        /// <param name="category">First category</param>
-        public Task(string description, string category)
-        {
-            this.Description = description;
-            this.AddCategory(category);
-        }
 
         /// <summary>
         /// Adds a new category to this task
