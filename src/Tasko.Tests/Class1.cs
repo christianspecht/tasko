@@ -21,11 +21,8 @@ namespace Tasko.Tests
             // save
             using (var session = store.OpenSession())
             {
-                var task = new Task();
-                task.Description = "test";
-                task.Categories = new List<string>();
-                task.Categories.Add("cat1");
-                task.Categories.Add("cat2");
+                var task = new Task("test", "cat1");
+                task.AddCategory("cat2");
 
                 session.Store(task);
                 id = task.Id;

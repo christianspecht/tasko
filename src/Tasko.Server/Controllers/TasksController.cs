@@ -10,8 +10,8 @@ namespace Tasko.Server.Controllers
     {
         Task[] tasks = new Task[]
         {
-            new Task { Id = 1, Description = "task1", Categories= new List<string> { "CatA" } }, 
-            new Task { Id = 2, Description = "task2", Categories= new List<string> { "CatA", "CatB" } }            
+            new Task("task1", "CatA"),
+            new Task("task2", "CatB")
         };
 
         public IEnumerable<Task> Get()
