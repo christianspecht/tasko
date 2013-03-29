@@ -22,6 +22,13 @@ namespace Tasko.Server.Models
         }
 
         /// <summary>
+        /// internal constructor, needed for RavenDB
+        /// </summary>
+        protected Task()
+        {
+        }
+
+        /// <summary>
         /// Id (internal, is set by RavenDB)
         /// </summary>
         public int Id { get; private set; }
