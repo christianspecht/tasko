@@ -34,6 +34,12 @@ namespace Tasko.Tests
                 Assert.That(task.Categories.Count == 1);
                 Assert.That(task.Categories[0] == "cat1");
             }
+
+            [Test]
+            public void ThrowsWhenCategoryIsEmpty()
+            {
+                Assert.Catch(() => new Task("foo", ""));
+            }
         }
 
         [TestFixture]
@@ -45,6 +51,28 @@ namespace Tasko.Tests
                 Assert.Catch(() => task.Description = null);
                 Assert.Catch(() => task.Description = "");
                 Assert.Catch(() => task.Description = "   ");
+            }
+        }
+
+        [TestFixture]
+        public class AddCategory : TaskTests
+        {
+            [Test]
+            public void CategoryWasAdded()
+            {
+                int numberOfCategories = task.Categories.Count;
+                task.AddCategory("cat2");
+
+                Assert.That(task.Categories.Count == numberOfCategories + 1);
+                Assert.That(task.Categories.Contains("cat2"));
+            }
+
+            [Test]
+            public void ThrowsWhenCategoryIsEmpty()
+            {
+                Assert.Catch(() => task.AddCategory(null));
+                Assert.Catch(() => task.AddCategory(""));
+                Assert.Catch(() => task.AddCategory("   "));
             }
         }
     }

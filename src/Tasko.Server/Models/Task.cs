@@ -39,7 +39,7 @@ namespace Tasko.Server.Models
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException("description can't be Null or empty");
+                    throw new ArgumentOutOfRangeException("description can't be null or empty");
                 }
 
                 this.description = value;
@@ -57,6 +57,11 @@ namespace Tasko.Server.Models
         /// <param name="category">The category</param>
         public void AddCategory(string category)
         {
+            if (string.IsNullOrWhiteSpace(category))
+            {
+                throw new ArgumentOutOfRangeException("category can't be null or empty");
+            }
+
             if (this.Categories == null)
             {
                 this.Categories = new List<string>();
