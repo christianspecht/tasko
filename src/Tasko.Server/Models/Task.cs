@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace Tasko.Server.Models
 {
@@ -7,6 +8,8 @@ namespace Tasko.Server.Models
     /// </summary>
     public class Task
     {
+        private string description;
+
         /// <summary>
         /// Id (internal, is set by RavenDB)
         /// </summary>
@@ -15,7 +18,22 @@ namespace Tasko.Server.Models
         /// <summary>
         /// Description (what to do)
         /// </summary>
-        public string Description { get; private set; }
+        public string Description
+        {
+            get
+            {
+                return this.description;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentNullException("description can't be Null or empty");
+                }
+
+                this.description = value;
+            }
+        }
 
         /// <summary>
         /// List of categories (readonly, use AddCategory to write)
