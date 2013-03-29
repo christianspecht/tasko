@@ -1,4 +1,8 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
+using Raven.Client;
+using Raven.Client.Embedded;
+using Tasko.Server.Models;
 
 namespace Tasko.Tests
 {
@@ -8,7 +12,36 @@ namespace Tasko.Tests
         [Test]
         public void DummyTest()
         {
-            Assert.True(true);
+            // setup
+            IDocumentStore store = new EmbeddableDocumentStore { RunInMemory = true };
+            store.Initialize();
+
+            int id;
+
+            // save
+            using (var session = store.OpenSession())
+            {
+                var task = new Task();
+                task.Description = "test";
+                task.Categories = new List<string>();
+                task.Categories.Add("cat1");
+                task.Categories.Add("cat2");
+
+                session.Store(task);
+                id = task.Id;
+
+                session.SaveChanges();
+            }
+
+            // load
+            using (var session = store.OpenSession())
+            {
+                var task = session.Load<Task>(id);
+
+                Assert.That(task.Id == id);
+                Assert.That(task.Description == "test");
+                Assert.That(task.Categories.Count == 2);
+            }
         }
     }
 }
