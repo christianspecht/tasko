@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using Tasko.Server.Properties;
 
 namespace Tasko.Server.Models
 {
@@ -46,7 +47,7 @@ namespace Tasko.Server.Models
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentOutOfRangeException("description can't be null or empty");
+                    throw new ArgumentOutOfRangeException(Resources.DescriptionEmpty);
                 }
 
                 this.description = value;
@@ -66,7 +67,7 @@ namespace Tasko.Server.Models
         {
             if (string.IsNullOrWhiteSpace(category))
             {
-                throw new ArgumentOutOfRangeException("category can't be null or empty");
+                throw new ArgumentOutOfRangeException(Resources.CategoryEmpty);
             }
 
             if (this.Categories == null)
