@@ -20,6 +20,8 @@ namespace Tasko.Server.Models
         {
             this.Description = description;
             this.AddCategory(category);
+            this.UpdateCreated();
+            this.UpdateLastEdited();
         }
 
         /// <summary>
@@ -51,6 +53,7 @@ namespace Tasko.Server.Models
                 }
 
                 this.description = value;
+                this.UpdateLastEdited();
             }
         }
 
@@ -58,6 +61,16 @@ namespace Tasko.Server.Models
         /// List of categories (readonly, use AddCategory to write)
         /// </summary>
         public List<string> Categories { get; private set; }
+
+        /// <summary>
+        /// date/time when the task was created
+        /// </summary>
+        public DateTime CreatedAt { get; private set; }
+
+        /// <summary>
+        /// date/time when the task was last edited
+        /// </summary>
+        public DateTime LastEditedAt { get; private set; }
 
         /// <summary>
         /// Adds a new category to this task
@@ -76,6 +89,23 @@ namespace Tasko.Server.Models
             }
 
             this.Categories.Add(category);
+            this.UpdateLastEdited();
+        }
+
+        /// <summary>
+        /// Helper function: sets CreatedAt to the current date/time
+        /// </summary>
+        private void UpdateCreated()
+        {
+            this.CreatedAt = DateTime.UtcNow;
+        }
+
+        /// <summary>
+        /// Helper function: sets LastEditedAt to the current date/time
+        /// </summary>
+        private void UpdateLastEdited()
+        {
+            this.LastEditedAt = DateTime.UtcNow;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Threading;
+using NUnit.Framework;
 using Tasko.Server.Models;
 
 namespace Tasko.Tests
@@ -6,11 +8,17 @@ namespace Tasko.Tests
     public class TaskTests
     {
         private Task task;
+        private DateTime lastEditedAt;
 
         [SetUp]
         public void Setup()
         {
             this.task = new Task("foo", "cat1");
+
+            // save value for tests (to be able to tell if the value was changed after creation)
+            // and pause to make sure that the value is actually different after being set a second time
+            this.lastEditedAt = this.task.LastEditedAt;
+            Thread.Sleep(3);
         }
 
         [TestFixture]
@@ -40,6 +48,18 @@ namespace Tasko.Tests
             {
                 Assert.Catch(() => new Task("foo", ""));
             }
+
+            [Test]
+            public void CreatedAtWasSet()
+            {
+                Assert.That(task.CreatedAt != DateTime.MinValue);
+            }
+
+            [Test]
+            public void LastEditedWasSet()
+            {
+                Assert.That(task.LastEditedAt != DateTime.MinValue);
+            }
         }
 
         [TestFixture]
@@ -51,6 +71,13 @@ namespace Tasko.Tests
                 Assert.Catch(() => task.Description = null);
                 Assert.Catch(() => task.Description = "");
                 Assert.Catch(() => task.Description = "   ");
+            }
+
+            [Test]
+            public void LastEditedChangesWhenDescriptionIsChanged()
+            {
+                task.Description = "bar";
+                Assert.That(task.LastEditedAt != this.lastEditedAt);
             }
         }
 
@@ -73,6 +100,13 @@ namespace Tasko.Tests
                 Assert.Catch(() => task.AddCategory(null));
                 Assert.Catch(() => task.AddCategory(""));
                 Assert.Catch(() => task.AddCategory("   "));
+            }
+
+            [Test]
+            public void LastEditedChangesWhenCategoryIsAdded()
+            {
+                task.AddCategory("cat2");
+                Assert.That(task.LastEditedAt != this.lastEditedAt);
             }
         }
     }
