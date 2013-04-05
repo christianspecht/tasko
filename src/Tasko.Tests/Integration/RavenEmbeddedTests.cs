@@ -4,13 +4,13 @@ using Raven.Client;
 using Raven.Client.Embedded;
 using Tasko.Server.Models;
 
-namespace Tasko.Tests
+namespace Tasko.Tests.Integration
 {
     [TestFixture]
-    public class Class1
+    public class RavenEmbeddedTests
     {
         [Test]
-        public void DummyTest()
+        public void RavenEmbeddedWorks()
         {
             // setup
             IDocumentStore store = new EmbeddableDocumentStore { RunInMemory = true };

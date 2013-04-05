@@ -3,7 +3,7 @@ using System.Threading;
 using NUnit.Framework;
 using Tasko.Server.Models;
 
-namespace Tasko.Tests
+namespace Tasko.Tests.Unit
 {
     public class TaskTests
     {

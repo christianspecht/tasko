@@ -59,9 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Integration\RavenEmbeddedTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TaskTests.cs" />
+    <Compile Include="Unit\TaskTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
