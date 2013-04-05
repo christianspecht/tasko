@@ -21,7 +21,6 @@ namespace Tasko.Server.Models
             this.Description = description;
             this.AddCategory(category);
             this.UpdateCreated();
-            this.UpdateLastEdited();
         }
 
         /// <summary>
@@ -115,16 +114,29 @@ namespace Tasko.Server.Models
                 throw new InvalidOperationException(Resources.CanBeFinishedOnlyOnce);
             }
 
-            this.FinishedAt = DateTime.UtcNow;
-            UpdateLastEdited();
+            UpdateFinished();
         }
 
         /// <summary>
-        /// Helper function: sets CreatedAt to the current date/time
+        /// Reopens the task
+        /// </summary>
+        public void Reopen()
+        {
+            if (!this.IsFinished)
+            {
+                throw new InvalidOperationException(Resources.CanBeReopenedOnlyWhenFinished);
+            }
+
+            UpdateFinished(true);
+        }
+
+        /// <summary>
+        /// Helper function: sets CreatedAt (and LastEditedAt) to the current date/time
         /// </summary>
         private void UpdateCreated()
         {
             this.CreatedAt = DateTime.UtcNow;
+            UpdateLastEdited();
         }
 
         /// <summary>
@@ -133,6 +145,24 @@ namespace Tasko.Server.Models
         private void UpdateLastEdited()
         {
             this.LastEditedAt = DateTime.UtcNow;
+        }
+
+        /// <summary>
+        /// Helper function: sets FinishedAt (and LastEditedAt) to the current date/time or to NULL
+        /// </summary>
+        /// <param name="delete">True to set to NULL</param>
+        private void UpdateFinished(bool delete = false)
+        {
+            if (delete)
+            {
+                this.FinishedAt = null;
+            }
+            else
+            {
+                this.FinishedAt = DateTime.UtcNow;
+            }
+
+            UpdateLastEdited();
         }
     }
 }

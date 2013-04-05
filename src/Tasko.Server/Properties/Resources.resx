@@ -120,6 +120,9 @@
   <data name="CanBeFinishedOnlyOnce" xml:space="preserve">
     <value>task is already finished - can't finish it more than once</value>
   </data>
+  <data name="CanBeReopenedOnlyWhenFinished" xml:space="preserve">
+    <value>task is not finished - can't be reopened</value>
+  </data>
   <data name="CategoryEmpty" xml:space="preserve">
     <value>category can't be null or empty</value>
   </data>

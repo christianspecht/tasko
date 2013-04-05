@@ -70,6 +70,15 @@ namespace Tasko.Server.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die task is not finished - can&apos;t be reopened ähnelt.
+        /// </summary>
+        internal static string CanBeReopenedOnlyWhenFinished {
+            get {
+                return ResourceManager.GetString("CanBeReopenedOnlyWhenFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die category can&apos;t be null or empty ähnelt.
         /// </summary>
         internal static string CategoryEmpty {

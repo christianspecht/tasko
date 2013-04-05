@@ -147,5 +147,55 @@ namespace Tasko.Tests
                 Assert.Catch(() => task.Finish());
             }
         }
+
+        [TestFixture]
+        public class Reopen : TaskTests
+        {
+            [Test]
+            public void TaskIsNotFinished()
+            {
+                task.Finish();
+                task.Reopen();
+
+                Assert.That(!task.IsFinished);
+            }
+
+            [Test]
+            public void FinishedAtIsNull()
+            {
+                task.Finish();
+                task.Reopen();
+
+                Assert.That(!task.FinishedAt.HasValue);
+            }
+
+            [Test]
+            public void LastEditedIsSet()
+            {
+                task.Finish();
+                
+                // save LastEdited again and wait (to make sure that the value is different)
+                this.lastEditedAt = this.task.LastEditedAt;
+                Thread.Sleep(3);
+
+                task.Reopen();
+
+                Assert.That(task.LastEditedAt != this.lastEditedAt);
+            }
+
+            [Test]
+            public void ThrowsWhenUnfinishedTaskIsReopened()
+            {
+                Assert.Catch(() => task.Reopen());
+            }
+
+            [Test]
+            public void ThrowsWhenTaskIsReopenedTwice()
+            {
+                task.Finish();
+                task.Reopen();
+                Assert.Catch(() => task.Reopen());
+            }
+        }
     }
 }
