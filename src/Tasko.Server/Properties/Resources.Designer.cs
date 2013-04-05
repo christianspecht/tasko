@@ -61,6 +61,15 @@ namespace Tasko.Server.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die task is already finished - can&apos;t finish it more than once ähnelt.
+        /// </summary>
+        internal static string CanBeFinishedOnlyOnce {
+            get {
+                return ResourceManager.GetString("CanBeFinishedOnlyOnce", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die category can&apos;t be null or empty ähnelt.
         /// </summary>
         internal static string CategoryEmpty {

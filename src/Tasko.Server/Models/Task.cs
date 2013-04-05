@@ -73,6 +73,19 @@ namespace Tasko.Server.Models
         public DateTime LastEditedAt { get; private set; }
 
         /// <summary>
+        /// date/time when the task was finished
+        /// </summary>
+        public DateTime? FinishedAt { get; private set; }
+
+        /// <summary>
+        /// Indicates whether the task is finished or not
+        /// </summary>
+        public bool IsFinished
+        {
+            get { return this.FinishedAt.HasValue; }
+        }
+
+        /// <summary>
         /// Adds a new category to this task
         /// </summary>
         /// <param name="category">The category</param>
@@ -90,6 +103,20 @@ namespace Tasko.Server.Models
 
             this.Categories.Add(category);
             this.UpdateLastEdited();
+        }
+
+        /// <summary>
+        /// Finishes the task
+        /// </summary>
+        public void Finish()
+        {
+            if (this.IsFinished)
+            {
+                throw new InvalidOperationException(Resources.CanBeFinishedOnlyOnce);
+            }
+
+            this.FinishedAt = DateTime.UtcNow;
+            UpdateLastEdited();
         }
 
         /// <summary>

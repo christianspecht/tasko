@@ -60,6 +60,12 @@ namespace Tasko.Tests
             {
                 Assert.That(task.LastEditedAt != DateTime.MinValue);
             }
+
+            [Test]
+            public void TaskIsNotFinished()
+            {
+                Assert.IsFalse(task.IsFinished);
+            }
         }
 
         [TestFixture]
@@ -107,6 +113,38 @@ namespace Tasko.Tests
             {
                 task.AddCategory("cat2");
                 Assert.That(task.LastEditedAt != this.lastEditedAt);
+            }
+        }
+
+        [TestFixture]
+        public class Finish : TaskTests
+        {
+            [Test]
+            public void TaskIsFinished()
+            {
+                task.Finish();
+                Assert.That(task.IsFinished);
+            }
+
+            [Test]
+            public void FinishedAtIsSet()
+            {
+                task.Finish();
+                Assert.That(task.FinishedAt.HasValue);
+            }
+
+            [Test]
+            public void LastEditedIsSet()
+            {
+                task.Finish();
+                Assert.That(task.LastEditedAt != this.lastEditedAt);
+            }
+
+            [Test]
+            public void ThrowsWhenTaskIsFinishedTwice()
+            {
+                task.Finish();
+                Assert.Catch(() => task.Finish());
             }
         }
     }
