@@ -16,9 +16,18 @@ namespace Tasko.Tests.Unit
             this.task = new Task("foo", "cat1");
 
             // save value for tests (to be able to tell if the value was changed after creation)
-            // and pause to make sure that the value is actually different after being set a second time
             this.lastEditedAt = this.task.LastEditedAt;
-            Thread.Sleep(3);
+        }
+
+        /// <summary>
+        /// helper method: pause for a few ms
+        /// </summary>
+        /// <remarks>
+        /// To make sure that the "last edited" value is actually different when set a second time.
+        /// </remarks>
+        public void Wait()
+        {
+            Thread.Sleep(30);
         }
 
         [TestFixture]
@@ -82,6 +91,7 @@ namespace Tasko.Tests.Unit
             [Test]
             public void LastEditedChangesWhenDescriptionIsChanged()
             {
+                Wait();
                 task.Description = "bar";
                 Assert.That(task.LastEditedAt != this.lastEditedAt);
             }
@@ -111,6 +121,7 @@ namespace Tasko.Tests.Unit
             [Test]
             public void LastEditedChangesWhenCategoryIsAdded()
             {
+                Wait();
                 task.AddCategory("cat2");
                 Assert.That(task.LastEditedAt != this.lastEditedAt);
             }
@@ -136,6 +147,7 @@ namespace Tasko.Tests.Unit
             [Test]
             public void LastEditedIsSet()
             {
+                Wait();
                 task.Finish();
                 Assert.That(task.LastEditedAt != this.lastEditedAt);
             }
@@ -176,7 +188,7 @@ namespace Tasko.Tests.Unit
                 
                 // save LastEdited again and wait (to make sure that the value is different)
                 this.lastEditedAt = this.task.LastEditedAt;
-                Thread.Sleep(3);
+                Wait();
 
                 task.Reopen();
 
