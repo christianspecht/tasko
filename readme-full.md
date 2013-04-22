@@ -20,6 +20,16 @@ It comes with a server backend that you have to host yourself, on your own serve
 
 ---
 
+### Acknowledgements
+
+Tasko makes use of the following open source projects:
+
+- [MSBuild Community Tasks](https://github.com/loresoft/msbuildtasks)
+- [NUnit](http://nunit.org/)
+- [RavenDB](http://ravendb.net/)
+
+---
+
 ### License
 
 Tasko is licensed under the MIT License. See [License.txt](https://bitbucket.org/christianspecht/tasko/raw/tip/License.txt) for details.
