@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using Tasko.Server.Models;
 
 namespace Tasko.Server.Controllers
 {
-    public class TasksController : ApiController
+    public class TasksController : RavenController
     {
         Task[] tasks = new Task[]
         {
@@ -34,6 +35,18 @@ namespace Tasko.Server.Controllers
             }
 
             return task;
+        }
+
+        public HttpResponseMessage Post(TaskCreateDto dto)
+        {
+            if (dto == null)
+            {
+                return new HttpResponseMessage(HttpStatusCode.BadRequest); // Bad Request OK?
+            }
+
+            var task = new Task(dto.Description, dto.Category);
+            this.RavenSession.Store(task);
+            return new HttpResponseMessage(HttpStatusCode.Created);
         }
     }
 }
