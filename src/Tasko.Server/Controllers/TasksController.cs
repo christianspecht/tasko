@@ -41,7 +41,7 @@ namespace Tasko.Server.Controllers
         {
             if (dto == null)
             {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest); // Bad Request OK?
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
 
             var task = new Task(dto.Description, dto.Category);
