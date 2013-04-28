@@ -9,20 +9,16 @@ namespace Tasko.Server.Controllers
 {
     public class TasksController : RavenController
     {
-        Task[] tasks = new Task[]
-        {
-            new Task("task1", "CatA"),
-            new Task("task2", "CatB")
-        };
-
         public IEnumerable<Task> Get()
         {
+            var tasks = this.RavenSession.Query<Task>();
             return tasks;
         }
 
         public IEnumerable<Task> Get(string category)
         {
-            return tasks.Where(t => t.Categories.Any(c => c.Contains(category)));
+            var tasks = this.RavenSession.Query<Task>().Where(t => t.Categories.Contains(category));
+            return tasks;
         }
 
         public Task Get(int id)
