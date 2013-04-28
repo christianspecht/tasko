@@ -27,7 +27,7 @@ namespace Tasko.Server.Controllers
 
         public Task Get(int id)
         {
-            var task = tasks.SingleOrDefault(t => t.Id == id);
+            var task = this.RavenSession.Load<Task>("tasks/" + id.ToString()); 
 
             if (task == null)
             {
