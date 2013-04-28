@@ -11,13 +11,13 @@ namespace Tasko.Server.Controllers
     {
         public IEnumerable<Task> Get()
         {
-            var tasks = this.RavenSession.Query<Task>();
+            var tasks = this.RavenSession.Query<Task>().OrderBy(t => t.Description);
             return tasks;
         }
 
         public IEnumerable<Task> Get(string category)
         {
-            var tasks = this.RavenSession.Query<Task>().Where(t => t.Categories.Contains(category));
+            var tasks = this.RavenSession.Query<Task>().Where(t => t.Categories.Contains(category)).OrderBy(t => t.Description);
             return tasks;
         }
 
