@@ -2,6 +2,8 @@
 using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
+using Raven.Client.Document;
+using Tasko.Server.Controllers;
 
 namespace Tasko.Server
 {
@@ -15,6 +17,9 @@ namespace Tasko.Server
                 defaults: new { id = RouteParameter.Optional });
 
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+
+            RavenController.Store = new DocumentStore { ConnectionStringName = "RavenDB" };
+            RavenController.Store.Initialize();
         }
     }
 }
