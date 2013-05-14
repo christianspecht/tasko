@@ -25,15 +25,24 @@ namespace Tasko.Tests.Integration
             return c;
         }
 
+        /// <summary>
+        /// creates a TaskCreateDto
+        /// </summary>
+        public TaskCreateDto GetDto(string description, string category)
+        {
+            var dto = new TaskCreateDto();
+            dto.Description = "foo";
+            dto.Category = "bar";
+            return dto;
+        }
+
         [TestFixture]
         public class Post : TasksControllerTests
         {
             [Test]
             public void InsertsOneTask()
             {
-                var dto = new TaskCreateDto();
-                dto.Description = "foo";
-                dto.Category = "bar";
+                var dto = GetDto("foo", "bar");
 
                 using (var c = GetController())
                 {
