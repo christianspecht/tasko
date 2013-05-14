@@ -6,13 +6,16 @@ namespace Tasko.Server.Controllers
 {
     public abstract class RavenController : ApiController
     {
-        public IDocumentSession RavenSession { get; protected set; }
+        public IDocumentSession RavenSession { get; set; }
 
         public static IDocumentStore Store { get; set; }
 
         protected override void Initialize(HttpControllerContext controllerContext)
-        {            
-            this.RavenSession = Store.OpenSession();
+        {
+            if (this.RavenSession == null)
+            {
+                this.RavenSession = Store.OpenSession();
+            }
             base.Initialize(controllerContext);
         }
 
@@ -20,7 +23,10 @@ namespace Tasko.Server.Controllers
         {
             using (this.RavenSession)
             {
-                this.RavenSession.SaveChanges();
+                if (this.RavenSession != null)
+                {
+                    this.RavenSession.SaveChanges();
+                }
             }
             base.Dispose(disposing);
         }
