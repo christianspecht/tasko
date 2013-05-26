@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -44,6 +45,9 @@ namespace Tasko.Server.Controllers
             this.RavenSession.Store(task);
 
             var resp = Request.CreateResponse<Task>(HttpStatusCode.Created, task);
+            string uri = Url.Link("DefaultAPI", new { id = task.Id });
+            resp.Headers.Location = new Uri(uri);
+
             return resp;
         }
     }

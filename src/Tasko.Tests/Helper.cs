@@ -24,6 +24,7 @@ namespace Tasko.Tests
             controller.ControllerContext = new HttpControllerContext(config, routeData, request);
             controller.Request = request;
             controller.Request.Properties[HttpPropertyKeys.HttpConfigurationKey] = config;
+            controller.Request.Properties.Add(HttpPropertyKeys.HttpRouteDataKey, routeData);
         }
     }
 }
