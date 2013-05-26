@@ -21,6 +21,8 @@ namespace Tasko.Tests.Integration
         public TasksController GetController()
         {
             var c = new TasksController();
+            Helper.SetupControllerForTests(c);
+
             c.RavenSession = RavenController.Store.OpenSession();
             return c;
         }

@@ -42,7 +42,9 @@ namespace Tasko.Server.Controllers
 
             var task = new Task(dto.Description, dto.Category);
             this.RavenSession.Store(task);
-            return new HttpResponseMessage(HttpStatusCode.Created);
+
+            var resp = Request.CreateResponse<Task>(HttpStatusCode.Created, task);
+            return resp;
         }
     }
 }
