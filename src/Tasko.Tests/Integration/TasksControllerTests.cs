@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Net.Http;
 using NUnit.Framework;
 using Raven.Client.Embedded;
 using Tasko.Server.Controllers;
@@ -59,6 +60,21 @@ namespace Tasko.Tests.Integration
                     var task = tasks.First();
                     Assert.That(task.Description == "foo");
                     Assert.That(task.Categories.First() == "bar");
+                }
+            }
+
+            [Test]
+            public void ReturnsTaskWithId()
+            {
+                var dto = GetDto("foo", "bar");
+
+                using (var c = GetController())
+                {
+                    var resp = c.Post(dto);
+                    var task = resp.Content.ReadAsAsync<Task>().Result;
+
+                    Assert.That(task.Id > 0);
+                    Assert.That(task.Description == "foo");
                 }
             }
         }
