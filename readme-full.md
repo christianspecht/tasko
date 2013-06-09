@@ -29,7 +29,7 @@ If you want to make test calls to the API with a tool like [Fiddler](http://fidd
 
 
 
-#### Load all tasks
+### Load all tasks
 
 	GET /api/tasks
 
@@ -60,7 +60,7 @@ If you want to make test calls to the API with a tool like [Fiddler](http://fidd
 	  }
 	]
 
-#### Load a single task
+### Load a single task
 
 	GET /api/tasks/1
 
@@ -78,7 +78,7 @@ If you want to make test calls to the API with a tool like [Fiddler](http://fidd
 	  "IsFinished": false
 	}
 
-#### Load all tasks with a specific category
+### Load all tasks with a specific category
 
 	GET /api/tasks?category=Category1
 
@@ -98,7 +98,7 @@ If you want to make test calls to the API with a tool like [Fiddler](http://fidd
 	  }
 	]
 
-#### Create a new task
+### Create a new task
 
 	POST /api/tasks 
 
