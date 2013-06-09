@@ -20,6 +20,112 @@ It comes with a server backend that you have to host yourself, on your own serve
 
 ---
 
+## API Documentation
+
+
+If you want to make test calls to the API with a tool like [Fiddler](http://fiddler2.com/), remember to [set the right content type when you **send** data to the API](http://truncatedcodr.wordpress.com/2012/09/05/asp-net-web-api-always-set-content-type/):
+
+	Content-Type: application/json; charset=utf-8
+
+
+
+#### Load all tasks
+
+	GET /api/tasks
+
+**Response:**
+
+	[
+	  {
+	    "Id": 1,
+	    "Description": "First Task",
+	    "Categories": [
+	      "Category1"
+	    ],
+	    "CreatedAt": "2013-06-09T21:02:13.78125Z",
+	    "LastEditedAt": "2013-06-09T21:02:13.78125Z",
+	    "FinishedAt": null,
+	    "IsFinished": false
+	  },
+	  {
+	    "Id": 2,
+	    "Description": "Second Task",
+	    "Categories": [
+	      "Category2"
+	    ],
+	    "CreatedAt": "2013-06-09T21:06:16.15625Z",
+	    "LastEditedAt": "2013-06-09T21:06:16.15625Z",
+	    "FinishedAt": null,
+	    "IsFinished": false
+	  }
+	]
+
+#### Load a single task
+
+	GET /api/tasks/1
+
+**Response:**
+
+	{
+	  "Id": 1,
+	  "Description": "First Task",
+	  "Categories": [
+	    "Category1"
+	  ],
+	  "CreatedAt": "2013-06-09T21:02:13.78125Z",
+	  "LastEditedAt": "2013-06-09T21:02:13.78125Z",
+	  "FinishedAt": null,
+	  "IsFinished": false
+	}
+
+#### Load all tasks with a specific category
+
+	GET /api/tasks?category=Category1
+
+**Response:**
+
+	[
+	  {
+	    "Id": 1,
+	    "Description": "First Task",
+	    "Categories": [
+	      "Category1"
+	    ],
+	    "CreatedAt": "2013-06-09T21:02:13.78125Z",
+	    "LastEditedAt": "2013-06-09T21:02:13.78125Z",
+	    "FinishedAt": null,
+	    "IsFinished": false
+	  }
+	]
+
+#### Create a new task
+
+	POST /api/tasks 
+
+**Input:**
+
+	{
+		"Description": "the description",
+		"Category": "the category"
+	}
+
+**Response:**
+
+	{
+	  "Id": 3,
+	  "Description": "the description",
+	  "Categories": [
+	    "the category"
+	  ],
+	  "CreatedAt": "2013-06-09T22:27:34.875Z",
+	  "LastEditedAt": "2013-06-09T22:27:34.875Z",
+	  "FinishedAt": null,
+	  "IsFinished": false
+	}
+	
+
+---
+
 ### Acknowledgements
 
 Tasko makes use of the following open source projects:
