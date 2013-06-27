@@ -18,6 +18,8 @@ namespace Tasko.Server
 
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
+            GlobalConfiguration.Configuration.MessageHandlers.Add(new TaskoBasicAuthHandler());
+
             RavenController.Store = new DocumentStore { ConnectionStringName = "RavenDB" };
             RavenController.Store.Initialize();
         }

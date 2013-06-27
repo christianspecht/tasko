@@ -122,6 +122,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TaskoBasicAuthHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
