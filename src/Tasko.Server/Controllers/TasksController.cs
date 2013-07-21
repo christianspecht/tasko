@@ -8,7 +8,6 @@ using Tasko.Server.Models;
 
 namespace Tasko.Server.Controllers
 {
-    [Authorize]
     public class TasksController : RavenController
     {
         public IEnumerable<Task> Get()
