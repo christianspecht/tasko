@@ -4,6 +4,8 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Web;
+using Tasko.Server.Controllers;
+using Tasko.Server.Models;
 
 namespace Tasko.Server
 {
@@ -28,10 +30,17 @@ namespace Tasko.Server
             }
         }
 
-        // TODO: Here is where you would validate the username and password.
         private static bool CheckPassword(string username, string password)
         {
-            return username == "user" && password == "password";
+            var session = RavenController.Store.OpenSession();
+            var user = session.Load<User>("users/" + username);
+
+            if (user != null)
+            {
+                return user.Password == password;
+            }
+
+            return false;
         }
 
         private static bool AuthenticateUser(string credentials)
