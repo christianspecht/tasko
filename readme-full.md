@@ -20,13 +20,41 @@ It comes with a server backend that you have to host yourself, on your own serve
 
 ---
 
+## Hosting
+
+Tasko.Server needs IIS to run. I'm using [AppHarbor](https://appharbor.com/) (with the [RavenHQ add-on](https://appharbor.com/addons/ravenhq)) for my personal instance.  
+
+
+### Creating users
+
+For now, Tasko doesn't support creating new users via the API - you have to create them in RavenDB Management Studio.  
+Just create a new document *(**New** -> **New Document** in the top navigation bar)*, enter `users/yourname` as the document id and the following data:
+	
+	{
+	  "Id": "yourname",
+	  "Password": "123"
+	}
+
+Here's how it should look like for the user **yourname**:
+
+![new user](https://bitbucket.org/christianspecht/tasko/raw/tip/img/newuser.png)
+
+---
+
 ## API Documentation
 
+### Authentication and content type
 
-If you want to make test calls to the API with a tool like [Fiddler](http://fiddler2.com/), remember to [set the right content type when you **send** data to the API](http://truncatedcodr.wordpress.com/2012/09/05/asp-net-web-api-always-set-content-type/):
+1. Tasko uses [HTTP Basic Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication#Client_side).
+
+2. Don't forget to [set the right content type when you **send** data to the API](http://truncatedcodr.wordpress.com/2012/09/05/asp-net-web-api-always-set-content-type/).
+
+So a correct request header should contain these two lines:
 
 	Content-Type: application/json; charset=utf-8
+	Authorization: Basic eW91cm5hbWU6MTIz
 
+*(this is the user from the example above, **yourname** with password **123**)*
 
 
 ### Load all tasks
