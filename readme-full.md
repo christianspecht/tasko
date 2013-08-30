@@ -15,14 +15,19 @@ It comes with a server backend that you have to host yourself, on your own serve
 ## Links
 
 - Download page *(no downloads yet - Tasko isn't finished)*
-- [Report a bug](https://bitbucket.org/christianspecht/tasko/issues/new)
-- [Main project page on Bitbucket](https://bitbucket.org/christianspecht/tasko)
+- Report a bug:
+	- [Tasko Server](https://bitbucket.org/christianspecht/tasko/issues/new)
+	- [Tasko Android Client](https://bitbucket.org/christianspecht/tasko-androidclient/issues/new)
+- Project pages on Bitbucket:
+	- [Tasko Server](https://bitbucket.org/christianspecht/tasko)	
+	- [Tasko Android Client](https://bitbucket.org/christianspecht/tasko-androidclient)
 
 ---
 
 ## Hosting
 
-Tasko.Server needs IIS to run. I'm using [AppHarbor](https://appharbor.com/) (with the [RavenHQ add-on](https://appharbor.com/addons/ravenhq)) for my personal instance.  
+The Tasko server needs [IIS](http://www.iis.net/) and [RavenDB](http://ravendb.net/) to run.  
+I'm using [AppHarbor](https://appharbor.com/) (with the [RavenHQ add-on](https://appharbor.com/addons/ravenhq)) for my personal instance.  
 
 
 ### Creating users
@@ -158,6 +163,7 @@ So a correct request header should contain these two lines:
 
 Tasko makes use of the following open source projects:
 
+- [Android](http://www.android.com/)
 - [MSBuild Community Tasks](https://github.com/loresoft/msbuildtasks)
 - [NUnit](http://nunit.org/)
 - [RavenDB](http://ravendb.net/)
