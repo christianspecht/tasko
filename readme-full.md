@@ -1,6 +1,7 @@
 ![logo](https://bitbucket.org/christianspecht/tasko/raw/tip/img/logo128x128.png)
 
-Tasko will be a simple "to-do list" Android app with a server backend (to use the same list of tasks from multiple clients).
+Tasko is a simple to-do list app that you can host on your own server.  
+You can access your to-dos from everywhere with the Android app.
 
 There are probably already hundreds of apps that can do this ([Remember the Milk](http://www.rememberthemilk.com/) for example), but this one is mainly for learning purposes (write a mobile app with a backend service).
 
@@ -172,7 +173,7 @@ Tasko makes use of the following open source projects:
 
 ### License
 
-Tasko is licensed under the MIT License. See [License.txt](https://bitbucket.org/christianspecht/tasko/raw/tip/License.txt) for details.
+Tasko and the Tasko Android client are licensed under the MIT License. See [License.txt](https://bitbucket.org/christianspecht/tasko/raw/tip/License.txt) for details.
 
 ---
 

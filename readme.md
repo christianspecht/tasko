@@ -1,6 +1,6 @@
 # Tasko
 
-Tasko will be a simple mobile to-do list app with a server backend.
+Tasko is a simple to-do list app for your own server (with an Android client).
 
 See [http://christianspecht.de/tasko](http://christianspecht.de/tasko) for more information.
 
