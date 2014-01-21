@@ -4,6 +4,8 @@ using System.Web;
 using System.Web.Http;
 using Raven.Client.Document;
 using Tasko.Server.Controllers;
+using Tasko.Server.Models;
+using Thinktecture.IdentityModel.Tokens.Http;
 
 namespace Tasko.Server
 {
@@ -22,6 +24,28 @@ namespace Tasko.Server
 
             RavenController.Store = new DocumentStore { ConnectionStringName = "RavenDB" };
             RavenController.Store.Initialize();
+
+            var authConfig = new AuthenticationConfiguration
+            {
+                DefaultAuthenticationScheme = "Basic",
+                EnableSessionToken = true,
+                SendWwwAuthenticateResponseHeader = true
+            };
+
+            authConfig.AddBasicAuthentication((username, password) =>
+            {
+                var session = RavenController.Store.OpenSession();
+                var user = session.Load<User>("users/" + username);
+
+                if (user != null)
+                {
+                    return user.Password == password;
+                }
+
+                return false;
+            });
+
+            GlobalConfiguration.Configuration.MessageHandlers.Add(new AuthenticationHandler(authConfig));
         }
     }
 }
