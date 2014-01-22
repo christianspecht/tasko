@@ -29,7 +29,11 @@ namespace Tasko.Server
             {
                 DefaultAuthenticationScheme = "Basic",
                 EnableSessionToken = true,
-                SendWwwAuthenticateResponseHeader = true
+                SendWwwAuthenticateResponseHeader = true,
+                SessionToken = new SessionTokenConfiguration()
+                {
+                    SigningKey = new SigningKey().Get()
+                }
             };
 
             authConfig.AddBasicAuthentication((username, password) =>

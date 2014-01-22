@@ -125,6 +125,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SigningKey.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
