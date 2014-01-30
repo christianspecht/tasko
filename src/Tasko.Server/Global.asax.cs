@@ -32,7 +32,8 @@ namespace Tasko.Server
                 SendWwwAuthenticateResponseHeader = true,
                 SessionToken = new SessionTokenConfiguration()
                 {
-                    SigningKey = new SigningKey().Get()
+                    SigningKey = new SigningKey().Get(),
+                    DefaultTokenLifetime = TimeSpan.FromDays(365)
                 }
             };
 
