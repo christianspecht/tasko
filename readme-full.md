@@ -51,16 +51,32 @@ Here's how it should look like for the user **yourname**:
 
 ### Authentication and content type
 
-1. Tasko uses [HTTP Basic Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication#Client_side).
+Tasko uses [session token authentication](http://leastprivilege.com/2012/06/19/session-token-support-for-asp-net-web-api/), provided by [Thinktecture.IdentityModel](http://www.nuget.org/packages/Thinktecture.IdentityModel).  
 
-2. Don't forget to [set the right content type when you **send** data to the API](http://truncatedcodr.wordpress.com/2012/09/05/asp-net-web-api-always-set-content-type/).
+You log in once with username and password via [HTTP Basic Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication#Client_side) to request a session token:
 
-So a correct request header should contain these two lines:
-
+	GET /api/token
+	
 	Content-Type: application/json; charset=utf-8
 	Authorization: Basic eW91cm5hbWU6MTIz
 
 *(this is the user from the example above, **yourname** with password **123**)*
+
+**Response:**
+
+	{
+	  "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
+	  "expires_in": 31536000.0
+	}
+
+This token can now be used for authentication in subsequent requests. It will be valid for a year.
+
+Don't forget to [set the right content type when you **send** data to the API](http://truncatedcodr.wordpress.com/2012/09/05/asp-net-web-api-always-set-content-type/).  
+So a correct request header should contain these two lines:
+
+	Content-Type: application/json; charset=utf-8
+	Authorization: Session eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
+
 
 
 ### Load all tasks
@@ -168,6 +184,7 @@ Tasko makes use of the following open source projects:
 - [MSBuild Community Tasks](https://github.com/loresoft/msbuildtasks)
 - [NUnit](http://nunit.org/)
 - [RavenDB](http://ravendb.net/)
+- [Thinktecture.IdentityModel](http://www.nuget.org/packages/Thinktecture.IdentityModel)
 
 ---
 
