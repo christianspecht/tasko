@@ -186,6 +186,8 @@ Tasko makes use of the following open source projects:
 - [RavenDB](http://ravendb.net/)
 - [Thinktecture.IdentityModel](http://www.nuget.org/packages/Thinktecture.IdentityModel)
 
+<a name="license"></a>
+
 ---
 
 ### License

@@ -7,4 +7,4 @@ See [http://christianspecht.de/tasko](http://christianspecht.de/tasko) for more 
 
 ### License
 
-Tasko is licensed under the MIT License. See [License.txt](https://bitbucket.org/christianspecht/tasko/raw/tip/License.txt) for details.
+Tasko is licensed under the [MIT License](http://christianspecht.de/tasko/#license).
