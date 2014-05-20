@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasko.Server", "Tasko.Server\Tasko.Server.csproj", "{AA43FD21-3F75-468F-9EC7-21C53D181CAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasko.Tests", "Tasko.Tests\Tasko.Tests.csproj", "{985AF5DD-A361-43B4-9C8B-94120B44A514}"
