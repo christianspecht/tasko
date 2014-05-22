@@ -1,6 +1,6 @@
 @echo off
 
-path=%path%;%windir%\Microsoft.net\Framework\v4.0.30319
+path=%path%;%programfiles(x86)%\MSBuild\12.0\Bin
 
 cd %~dp0
 
