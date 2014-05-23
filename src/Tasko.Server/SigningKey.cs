@@ -6,16 +6,16 @@ namespace Tasko.Server
 {
     public class SigningKey
     {
-        public string Get()
+        public byte[] Get()
         {
             string key = ConfigurationManager.AppSettings["SigningKey"];
 
-            if (string.IsNullOrWhiteSpace(key))
+            if (!string.IsNullOrWhiteSpace(key))
             {
-                key = Convert.ToBase64String(CryptoRandom.CreateRandomKey(32));
+                return Convert.FromBase64String(key);
             }
 
-            return key;
+            return CryptoRandom.CreateRandomKey(32);
         }
     }
 }
