@@ -28,6 +28,7 @@ namespace Tasko.Server
             var authConfig = new AuthenticationConfiguration
             {
                 EnableSessionToken = true,
+                RequireSsl = !Helper.RunningOnAppHarbor(),
                 SessionToken = new SessionTokenConfiguration()
                 {
                     SigningKey = new SigningKey().Get(),
