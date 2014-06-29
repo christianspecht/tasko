@@ -28,7 +28,16 @@ It comes with a server backend that you have to host yourself, on your own serve
 ## Hosting
 
 The Tasko server needs [IIS](http://www.iis.net/) and [RavenDB](http://ravendb.net/) to run.  
-I'm using [AppHarbor](https://appharbor.com/) (with the [RavenHQ add-on](https://appharbor.com/addons/ravenhq)) for my personal instance.  
+I'm using [Windows Azure Websites](http://azure.microsoft.com/en-us/services/web-sites/) and [RavenHQ](https://www.ravenhq.com/) for my personal instance. 
+
+### SSL / https
+
+By default, Tasko enforces SSL, i.e. it will only accept HTTPS requests.
+
+**Note that Tasko will never enforce SSL when it's running on [AppHarbor](https://appharbor.com/)**, because [AppHarbor needs a custom `RequireHttps` attribute for that](https://gist.github.com/geersch/7710361) and I wasn't able to get it to work.  
+You can still use HTTPS on AppHarbor, it's just that Tasko will accept HTTP as well.
+
+If your server doesn't have SSL at all, you can enable HTTP by setting the `RequireSsl` key in the `appSettings` *(in `web.config`)* to `false`.
 
 
 ### Creating users

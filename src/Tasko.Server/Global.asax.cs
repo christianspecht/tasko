@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Raven.Client.Document;
+using System;
+using System.Configuration;
 using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
-using Raven.Client.Document;
 using Tasko.Server.Controllers;
 using Tasko.Server.Models;
 using Thinktecture.IdentityModel.Tokens.Http;
@@ -25,10 +26,12 @@ namespace Tasko.Server
             RavenController.Store = new DocumentStore { ConnectionStringName = "RavenDB" };
             RavenController.Store.Initialize();
 
+            bool requireSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["RequireSsl"]);
+
             var authConfig = new AuthenticationConfiguration
             {
                 EnableSessionToken = true,
-                RequireSsl = !Helper.RunningOnAppHarbor(),
+                RequireSsl = requireSsl && !Helper.RunningOnAppHarbor(),
                 SessionToken = new SessionTokenConfiguration()
                 {
                     SigningKey = new SigningKey().Get(),
