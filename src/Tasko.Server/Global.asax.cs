@@ -27,6 +27,7 @@ namespace Tasko.Server
             RavenController.Store.Initialize();
 
             bool requireSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["RequireSsl"]);
+            int tokenLifetime = Convert.ToInt32(ConfigurationManager.AppSettings["TokenLifetime"]);
 
             var authConfig = new AuthenticationConfiguration
             {
@@ -35,7 +36,7 @@ namespace Tasko.Server
                 SessionToken = new SessionTokenConfiguration()
                 {
                     SigningKey = new SigningKey().Get(),
-                    DefaultTokenLifetime = TimeSpan.FromDays(365)
+                    DefaultTokenLifetime = TimeSpan.FromDays(tokenLifetime)
                 }
             };
 

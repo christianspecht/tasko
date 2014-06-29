@@ -92,7 +92,7 @@ You log in once with username and password via [HTTP Basic Authentication](http:
 	  "expires_in": 31536000.0
 	}
 
-This token can now be used for authentication in subsequent requests. It will be valid for a year.
+This token can now be used for authentication in subsequent requests. With Tasko's default settings, it will be valid for a year *(you can change that in `web.config` by setting a different value for the `TokenLifetime` key)*.
 
 Don't forget to [set the right content type when you **send** data to the API](http://truncatedcodr.wordpress.com/2012/09/05/asp-net-web-api-always-set-content-type/).  
 So a correct request header should contain these two lines:
