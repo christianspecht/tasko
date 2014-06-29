@@ -39,6 +39,21 @@ You can still use HTTPS on AppHarbor, it's just that Tasko will accept HTTP as w
 
 If your server doesn't have SSL at all, you can enable HTTP by setting the `RequireSsl` key in the `appSettings` *(in `web.config`)* to `false`.
 
+### Setting a SigningKey
+
+Tasko uses [session token authentication](http://leastprivilege.com/2012/06/19/session-token-support-for-asp-net-web-api/), provided by [Thinktecture.IdentityModel](http://www.nuget.org/packages/Thinktecture.IdentityModel).
+IdentityModel needs a `SigningKey` to sign the tokens it creates.  
+ 
+You should provide a fixed key in `web.config`:
+
+	<appSettings>
+		<add key="SigningKey" value="..."/>
+	</appSettings>
+
+To create a valid key, just create a random 32-character string and convert it to Base64 *([like IdentityModel does it under the hood](https://github.com/thinktecture/Thinktecture.IdentityModel.40/blob/master/IdentityModel/Thinktecture.IdentityModel/Tokens/Http/SessionTokenConfiguration.cs#L58))*.
+
+If you don't provide a key, a new one will be generated on each application restart, which means that all existing tokens are invalidated.
+So if you want the tokens to "survive" an application restart, you should provide your own key.
 
 ### Creating users
 
@@ -60,8 +75,7 @@ Here's how it should look like for the user **yourname**:
 
 ### Authentication and content type
 
-Tasko uses [session token authentication](http://leastprivilege.com/2012/06/19/session-token-support-for-asp-net-web-api/), provided by [Thinktecture.IdentityModel](http://www.nuget.org/packages/Thinktecture.IdentityModel).  
-
+As mentioned before, Tasko uses **session token authentication**.  
 You log in once with username and password via [HTTP Basic Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication#Client_side) to request a session token:
 
 	GET /api/token
