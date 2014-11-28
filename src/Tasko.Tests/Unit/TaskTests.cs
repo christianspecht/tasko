@@ -36,7 +36,7 @@ namespace Tasko.Tests.Unit
             [Test]
             public void DescriptionWasSet()
             {
-                Assert.That(task.Description == "foo");
+                Assert.AreEqual("foo", task.Description);
             }
 
             [Test]
@@ -48,8 +48,8 @@ namespace Tasko.Tests.Unit
             [Test]
             public void CategoryWasAdded()
             {
-                Assert.That(task.Categories.Count == 1);
-                Assert.That(task.Categories[0] == "cat1");
+                Assert.AreEqual(1, task.Categories.Count);
+                Assert.AreEqual("cat1", task.Categories[0]);
             }
 
             [Test]
@@ -61,13 +61,13 @@ namespace Tasko.Tests.Unit
             [Test]
             public void CreatedAtWasSet()
             {
-                Assert.That(task.CreatedAt != DateTime.MinValue);
+                Assert.AreNotEqual(DateTime.MinValue, task.CreatedAt);
             }
 
             [Test]
             public void LastEditedWasSet()
             {
-                Assert.That(task.LastEditedAt != DateTime.MinValue);
+                Assert.AreNotEqual(DateTime.MinValue, task.LastEditedAt);
             }
 
             [Test]
@@ -93,7 +93,7 @@ namespace Tasko.Tests.Unit
             {
                 Wait();
                 task.Description = "bar";
-                Assert.That(task.LastEditedAt != this.lastEditedAt);
+                Assert.AreNotEqual(this.lastEditedAt, task.LastEditedAt);
             }
         }
 
@@ -106,7 +106,7 @@ namespace Tasko.Tests.Unit
                 int numberOfCategories = task.Categories.Count;
                 task.AddCategory("cat2");
 
-                Assert.That(task.Categories.Count == numberOfCategories + 1);
+                Assert.AreEqual(numberOfCategories + 1, task.Categories.Count);
                 Assert.That(task.Categories.Contains("cat2"));
             }
 
@@ -123,7 +123,7 @@ namespace Tasko.Tests.Unit
             {
                 Wait();
                 task.AddCategory("cat2");
-                Assert.That(task.LastEditedAt != this.lastEditedAt);
+                Assert.AreNotEqual(this.lastEditedAt, task.LastEditedAt);
             }
         }
 
@@ -149,7 +149,7 @@ namespace Tasko.Tests.Unit
             {
                 Wait();
                 task.Finish();
-                Assert.That(task.LastEditedAt != this.lastEditedAt);
+                Assert.AreNotEqual(this.lastEditedAt, task.LastEditedAt);
             }
 
             [Test]
@@ -192,7 +192,7 @@ namespace Tasko.Tests.Unit
 
                 task.Reopen();
 
-                Assert.That(task.LastEditedAt != this.lastEditedAt);
+                Assert.AreNotEqual(this.lastEditedAt, task.LastEditedAt);
             }
 
             [Test]
