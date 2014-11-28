@@ -1,6 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
+using System.Security.Principal;
 using System.Threading;
-using NUnit.Framework;
 using Tasko.Server.Models;
 
 namespace Tasko.Tests.Unit
@@ -13,10 +14,20 @@ namespace Tasko.Tests.Unit
         [SetUp]
         public void Setup()
         {
+            // set current user                   
+            var newIdentity = new GenericIdentity("newuser");
+            var newPrincipal = new GenericPrincipal(newIdentity, null);
+            Tasko.Server.Helper.SetCurrentUser(() => newPrincipal);
+
             this.task = new Task("foo", "cat1");
 
             // save value for tests (to be able to tell if the value was changed after creation)
             this.lastEditedAt = this.task.LastEditedAt;
+
+            // set current user                   
+            var editIdentity = new GenericIdentity("edituser");
+            var editPrincipal = new GenericPrincipal(editIdentity, null);
+            Tasko.Server.Helper.SetCurrentUser(() => editPrincipal);
         }
 
         /// <summary>
@@ -62,12 +73,14 @@ namespace Tasko.Tests.Unit
             public void CreatedAtWasSet()
             {
                 Assert.AreNotEqual(DateTime.MinValue, task.CreatedAt);
+                Assert.AreEqual("newuser", task.CreatedBy);
             }
 
             [Test]
             public void LastEditedWasSet()
             {
                 Assert.AreNotEqual(DateTime.MinValue, task.LastEditedAt);
+                Assert.AreEqual("newuser", task.LastEditedBy);
             }
 
             [Test]
@@ -94,6 +107,7 @@ namespace Tasko.Tests.Unit
                 Wait();
                 task.Description = "bar";
                 Assert.AreNotEqual(this.lastEditedAt, task.LastEditedAt);
+                Assert.AreEqual("edituser", task.LastEditedBy);
             }
         }
 
@@ -124,6 +138,7 @@ namespace Tasko.Tests.Unit
                 Wait();
                 task.AddCategory("cat2");
                 Assert.AreNotEqual(this.lastEditedAt, task.LastEditedAt);
+                Assert.AreEqual("edituser", task.LastEditedBy);
             }
         }
 
@@ -142,6 +157,7 @@ namespace Tasko.Tests.Unit
             {
                 task.Finish();
                 Assert.That(task.FinishedAt.HasValue);
+                Assert.AreEqual("edituser", task.FinishedBy);
             }
 
             [Test]
@@ -150,6 +166,7 @@ namespace Tasko.Tests.Unit
                 Wait();
                 task.Finish();
                 Assert.AreNotEqual(this.lastEditedAt, task.LastEditedAt);
+                Assert.AreEqual("edituser", task.LastEditedBy);
             }
 
             [Test]
@@ -179,6 +196,7 @@ namespace Tasko.Tests.Unit
                 task.Reopen();
 
                 Assert.That(!task.FinishedAt.HasValue);
+                Assert.IsNull(task.FinishedBy);
             }
 
             [Test]
@@ -193,6 +211,7 @@ namespace Tasko.Tests.Unit
                 task.Reopen();
 
                 Assert.AreNotEqual(this.lastEditedAt, task.LastEditedAt);
+                Assert.AreEqual("edituser", task.LastEditedBy);
             }
 
             [Test]

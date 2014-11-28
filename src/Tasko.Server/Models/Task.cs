@@ -67,14 +67,30 @@ namespace Tasko.Server.Models
         public DateTime CreatedAt { get; private set; }
 
         /// <summary>
+        /// user who created the task
+        /// </summary>
+        public string CreatedBy { get; private set; }
+
+        /// <summary>
         /// date/time when the task was last edited
         /// </summary>
         public DateTime LastEditedAt { get; private set; }
 
         /// <summary>
+        /// user who last edited the task
+        /// </summary>
+        public string LastEditedBy { get; private set; }
+
+        /// <summary>
         /// date/time when the task was finished
         /// </summary>
         public DateTime? FinishedAt { get; private set; }
+
+        /// <summary>
+        /// user who finished the task
+        /// </summary>
+        public string FinishedBy { get; private set; }
+
 
         /// <summary>
         /// Indicates whether the task is finished or not
@@ -136,6 +152,7 @@ namespace Tasko.Server.Models
         private void UpdateCreated()
         {
             this.CreatedAt = DateTime.UtcNow;
+            this.CreatedBy = Helper.CurrentUser;
             UpdateLastEdited();
         }
 
@@ -145,6 +162,7 @@ namespace Tasko.Server.Models
         private void UpdateLastEdited()
         {
             this.LastEditedAt = DateTime.UtcNow;
+            this.LastEditedBy = Helper.CurrentUser;
         }
 
         /// <summary>
@@ -156,10 +174,12 @@ namespace Tasko.Server.Models
             if (delete)
             {
                 this.FinishedAt = null;
+                this.FinishedBy = null;
             }
             else
             {
                 this.FinishedAt = DateTime.UtcNow;
+                this.FinishedBy = Helper.CurrentUser;
             }
 
             UpdateLastEdited();
