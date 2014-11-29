@@ -116,8 +116,11 @@ So a correct request header should contain these two lines:
 	      "Category1"
 	    ],
 	    "CreatedAt": "2013-06-09T21:02:13.78125Z",
+	    "CreatedBy": "someuser",
 	    "LastEditedAt": "2013-06-09T21:02:13.78125Z",
+	    "LastEditedBy": "someuser",
 	    "FinishedAt": null,
+	    "FinishedBy": null,
 	    "IsFinished": false
 	  },
 	  {
@@ -127,8 +130,11 @@ So a correct request header should contain these two lines:
 	      "Category2"
 	    ],
 	    "CreatedAt": "2013-06-09T21:06:16.15625Z",
+	    "CreatedBy": "someuser",
 	    "LastEditedAt": "2013-06-09T21:06:16.15625Z",
+	    "LastEditedBy": "someuser",
 	    "FinishedAt": null,
+	    "FinishedBy": null,
 	    "IsFinished": false
 	  }
 	]
@@ -146,8 +152,11 @@ So a correct request header should contain these two lines:
 	    "Category1"
 	  ],
 	  "CreatedAt": "2013-06-09T21:02:13.78125Z",
+	    "CreatedBy": "someuser",
 	  "LastEditedAt": "2013-06-09T21:02:13.78125Z",
+	  "LastEditedBy": "someuser",
 	  "FinishedAt": null,
+	  "FinishedBy": null,
 	  "IsFinished": false
 	}
 
@@ -165,8 +174,11 @@ So a correct request header should contain these two lines:
 	      "Category1"
 	    ],
 	    "CreatedAt": "2013-06-09T21:02:13.78125Z",
+	    "CreatedBy": "someuser",
 	    "LastEditedAt": "2013-06-09T21:02:13.78125Z",
+	    "LastEditedBy": "someuser",
 	    "FinishedAt": null,
+	    "FinishedBy": null,
 	    "IsFinished": false
 	  }
 	]
@@ -191,8 +203,11 @@ So a correct request header should contain these two lines:
 	    "the category"
 	  ],
 	  "CreatedAt": "2013-06-09T22:27:34.875Z",
+	  "CreatedBy": "yourname",
 	  "LastEditedAt": "2013-06-09T22:27:34.875Z",
+	  "LastEditedBy": "yourname",
 	  "FinishedAt": null,
+	  "FinishedBy": null,
 	  "IsFinished": false
 	}
 	
