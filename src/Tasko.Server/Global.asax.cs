@@ -19,6 +19,10 @@ namespace Tasko.Server
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional });
 
+            GlobalConfiguration.Configuration.Routes.MapHttpRoute(
+                name: "DefaultApiWithAction",
+                routeTemplate: "api/{controller}/{id}/{action}");
+
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             GlobalConfiguration.Configuration.Filters.Add(new AuthorizeAttribute());

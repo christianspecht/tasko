@@ -50,5 +50,39 @@ namespace Tasko.Server.Controllers
 
             return resp;
         }
+
+        [ActionName("Finish")]
+        [HttpPost]
+        public HttpResponseMessage FinishTask(int id)
+        {
+            var task = this.RavenSession.Load<Task>("tasks/" + id.ToString());
+
+            if (task == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            task.Finish();
+
+            return Request.CreateResponse<Task>(HttpStatusCode.OK, task);
+        }
+
+        [ActionName("Reopen")]
+        [HttpPost]
+        public HttpResponseMessage ReopenTask(int id)
+        {
+            var task = this.RavenSession.Load<Task>("tasks/" + id.ToString());
+
+            if (task == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            task.Reopen();
+
+            return Request.CreateResponse<Task>(HttpStatusCode.OK, task);
+        }
+
+
     }
 }
