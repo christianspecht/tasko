@@ -183,5 +183,45 @@ namespace Tasko.Tests.Integration
                 }
             }
         }
+
+        [TestFixture]
+        public class FinishAndReopenTask : TasksControllerTests
+        {
+            [Test]
+            public void TaskIsFinishedAndReopened()
+            {
+                int taskid = 0;
+
+                using (var c = GetController())
+                {
+                    var dto = GetDto("foo", "bar");
+                    var resp = c.Post(dto);
+                    var task = resp.Content.ReadAsAsync<Task>().Result;
+                    taskid = task.Id;
+                    Assert.AreNotEqual(0, taskid);
+                }
+
+                using (var c = GetController())
+                {
+                    c.FinishTask(taskid);
+                }
+
+                // task should be finished now
+                using (var c = GetController())
+                {
+                    var task = c.Get(taskid);
+                    Assert.True(task.IsFinished);
+
+                    c.ReopenTask(taskid);
+                }
+
+                // task shouldn't be finished now
+                using (var c = GetController())
+                {
+                    var task = c.Get(taskid);
+                    Assert.False(task.IsFinished);
+                }
+            }
+        }
     }
 }
