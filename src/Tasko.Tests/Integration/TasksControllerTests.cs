@@ -60,8 +60,9 @@ namespace Tasko.Tests.Integration
                     Assert.That(tasks.Count() == 1);
 
                     var task = tasks.First();
-                    Assert.That(task.Description == "foo");
-                    Assert.That(task.Categories.First() == "bar");
+                    
+                    Assert.AreEqual("foo", task.Description);
+                    Assert.AreEqual("bar", task.Categories.First());
                 }
             }
 
@@ -75,9 +76,9 @@ namespace Tasko.Tests.Integration
                     var resp = c.Post(dto);
                     var task = resp.Content.ReadAsAsync<Task>().Result;
 
-                    Assert.That(task.Id > 0);
-                    Assert.That(task.Description == "foo");
-                    Assert.That(task.Categories.First() == "bar");
+                    Assert.Greater(task.Id, 0);
+                    Assert.AreEqual("foo", task.Description);
+                    Assert.AreEqual("bar", task.Categories.First());
                 }
             }
 
@@ -89,7 +90,7 @@ namespace Tasko.Tests.Integration
                     var dto = GetDto("foo", "bar");
                     var resp = c.Post(dto);
 
-                    Assert.That(resp.StatusCode == HttpStatusCode.Created);
+                    Assert.AreEqual(HttpStatusCode.Created, resp.StatusCode);
                 }
             }
 
@@ -99,7 +100,7 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var resp = c.Post(null);
-                    Assert.That(resp.StatusCode == HttpStatusCode.BadRequest);
+                    Assert.AreEqual(HttpStatusCode.BadRequest, resp.StatusCode);
                 }
             }
         }
@@ -118,16 +119,16 @@ namespace Tasko.Tests.Integration
                     var resp = c.Post(dto);
                     var task = resp.Content.ReadAsAsync<Task>().Result;
                     taskId = task.Id;
-                    Assert.That(taskId != 0);
+                    Assert.AreNotEqual(0, taskId);
                 }
 
                 using (var c = GetController())
                 {
                     var task = c.Get(taskId);
 
-                    Assert.That(task != null);
-                    Assert.That(task.Description == "foo");
-                    Assert.That(task.Categories.First() == "bar");
+                    Assert.IsNotNull(task);
+                    Assert.AreEqual("foo", task.Description);
+                    Assert.AreEqual("bar", task.Categories.First());
                 }
             }
 
@@ -137,7 +138,7 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var ex = Assert.Throws<HttpResponseException>(() => c.Get(100));
-                    Assert.That(ex.Response.StatusCode == HttpStatusCode.NotFound);
+                    Assert.AreEqual(HttpStatusCode.NotFound, ex.Response.StatusCode);
                 }
             }
 
@@ -157,8 +158,8 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var tasks = c.Get();
-                    Assert.That(tasks != null);
-                    Assert.That(tasks.Count() == 3);
+                    Assert.IsNotNull(tasks);
+                    Assert.AreEqual(3, tasks.Count());
                 }
             }
 
@@ -178,8 +179,8 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var tasks = c.Get("cat1");
-                    Assert.That(tasks != null);
-                    Assert.That(tasks.Count() == 2);
+                    Assert.IsNotNull(tasks);
+                    Assert.AreEqual(2, tasks.Count());
                 }
             }
         }
