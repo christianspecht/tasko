@@ -152,7 +152,7 @@ So a correct request header should contain these two lines:
 	    "Category1"
 	  ],
 	  "CreatedAt": "2013-06-09T21:02:13.78125Z",
-	    "CreatedBy": "someuser",
+	  "CreatedBy": "someuser",
 	  "LastEditedAt": "2013-06-09T21:02:13.78125Z",
 	  "LastEditedBy": "someuser",
 	  "FinishedAt": null,
@@ -210,7 +210,49 @@ So a correct request header should contain these two lines:
 	  "FinishedBy": null,
 	  "IsFinished": false
 	}
-	
+
+### Finish a task
+
+	POST /api/tasks/1/finish
+
+**Response:**
+
+	{
+	  "Id": 1,
+	  "Description": "First Task",
+	  "Categories": [
+	    "Category1"
+	  ],
+	  "CreatedAt": "2013-06-09T21:02:13.78125Z",
+	  "CreatedBy": "someuser",
+      "LastEditedAt": "2014-12-23T18:49:56.4420043Z",
+      "LastEditedBy": "yourname",
+      "FinishedAt": "2014-12-23T18:49:56.4420043Z",
+      "FinishedBy": "yourname",
+      "IsFinished": true
+	}
+
+
+### Reopen a finished task
+
+	POST /api/tasks/1/reopen
+
+**Response:**
+
+	{
+	  "Id": 1,
+	  "Description": "First Task",
+	  "Categories": [
+	    "Category1"
+	  ],
+	  "CreatedAt": "2013-06-09T21:02:13.78125Z",
+	  "CreatedBy": "someuser",
+      "LastEditedAt": "2014-12-23T18:52:17.3272503Z",
+      "LastEditedBy": "yourname",
+      "FinishedAt": null,
+      "FinishedBy": null,
+      "IsFinished": false
+	}
 
 ---
 
