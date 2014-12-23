@@ -137,6 +137,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SigningKey.cs" />
+    <Compile Include="TaskoExceptionFilterAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
