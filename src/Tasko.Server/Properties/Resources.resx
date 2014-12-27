@@ -123,6 +123,12 @@
   <data name="CanBeReopenedOnlyWhenFinished" xml:space="preserve">
     <value>task is not finished - can't be reopened</value>
   </data>
+  <data name="CantDeleteLastCategory" xml:space="preserve">
+    <value>task must have at least one category - can't delete the last one</value>
+  </data>
+  <data name="CategoryDoesntExist" xml:space="preserve">
+    <value>category [{0}] doesn't exist</value>
+  </data>
   <data name="CategoryEmpty" xml:space="preserve">
     <value>category can't be null or empty</value>
   </data>

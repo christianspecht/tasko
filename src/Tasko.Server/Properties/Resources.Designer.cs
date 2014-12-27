@@ -79,6 +79,24 @@ namespace Tasko.Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to task must have at least one category - can&apos;t delete the last one.
+        /// </summary>
+        internal static string CantDeleteLastCategory {
+            get {
+                return ResourceManager.GetString("CantDeleteLastCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to category [{0}] doesn&apos;t exist.
+        /// </summary>
+        internal static string CategoryDoesntExist {
+            get {
+                return ResourceManager.GetString("CategoryDoesntExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to category can&apos;t be null or empty.
         /// </summary>
         internal static string CategoryEmpty {

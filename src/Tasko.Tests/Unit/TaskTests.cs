@@ -143,6 +143,54 @@ namespace Tasko.Tests.Unit
         }
 
         [TestFixture]
+        public class DeleteCategory : TaskTests
+        {
+            [Test]
+            public void CategoryWasDeleted()
+            {
+                task.AddCategory("cat2");
+
+                task.DeleteCategory("cat1");
+                Assert.AreEqual(1, task.Categories.Count);
+                Assert.IsFalse(task.Categories.Contains("cat1"));
+            }
+
+            [Test]
+            public void LastEditedChanges()
+            {
+                task.AddCategory("cat2");
+                // save "last edited" again
+                this.lastEditedAt = this.task.LastEditedAt;
+                Wait();
+
+                task.DeleteCategory("cat1");
+                Assert.AreNotEqual(this.lastEditedAt, task.LastEditedAt);
+            }
+
+            [Test]
+            public void ThrowsWhenCategoryIsEmpty()
+            {
+                Assert.Catch(() => task.DeleteCategory(null));
+                Assert.Catch(() => task.DeleteCategory(""));
+                Assert.Catch(() => task.DeleteCategory("   "));
+            }
+
+            [Test]
+            public void ThrowsWhenCategoryDoesntExist()
+            {
+                task.AddCategory("cat2");
+
+                Assert.Catch(() => task.DeleteCategory("foo"));
+            }
+
+            [Test]
+            public void ThrowsWhenDeletingLastCategory()
+            {
+                Assert.Catch(() => task.DeleteCategory("cat1"));
+            }
+        }
+
+        [TestFixture]
         public class Finish : TaskTests
         {
             [Test]

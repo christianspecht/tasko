@@ -121,6 +121,31 @@ namespace Tasko.Server.Models
         }
 
         /// <summary>
+        /// Deletes the category from this task
+        /// </summary>
+        /// <param name="category">The category</param>
+        public void DeleteCategory(string category)
+        {
+            if (string.IsNullOrWhiteSpace(category))
+            {
+                throw new TaskoInvalidInputException(Resources.CategoryEmpty);
+            }
+
+            if (!this.Categories.Contains(category))
+            {
+                throw new TaskoInvalidInputException(Resources.CategoryDoesntExist);
+            }
+
+            if (this.Categories.Count == 1)
+            {
+                throw new TaskoInvalidInputException(Resources.CantDeleteLastCategory);
+            }
+
+            this.Categories.Remove(category);
+            this.UpdateLastEdited();
+        }
+
+        /// <summary>
         /// Finishes the task
         /// </summary>
         public void Finish()
