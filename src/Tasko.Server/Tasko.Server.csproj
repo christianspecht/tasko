@@ -138,6 +138,7 @@
     </Compile>
     <Compile Include="SigningKey.cs" />
     <Compile Include="TaskoExceptionFilterAttribute.cs" />
+    <Compile Include="TaskoInvalidInputException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

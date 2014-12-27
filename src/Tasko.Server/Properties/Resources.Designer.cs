@@ -95,5 +95,14 @@ namespace Tasko.Server.Properties {
                 return ResourceManager.GetString("DescriptionEmpty", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error has occured..
+        /// </summary>
+        internal static string GenericErrorMessage {
+            get {
+                return ResourceManager.GetString("GenericErrorMessage", resourceCulture);
+            }
+        }
     }
 }

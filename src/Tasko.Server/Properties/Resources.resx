@@ -129,4 +129,7 @@
   <data name="DescriptionEmpty" xml:space="preserve">
     <value>description can't be null or empty</value>
   </data>
+  <data name="GenericErrorMessage" xml:space="preserve">
+    <value>An error has occured.</value>
+  </data>
 </root>

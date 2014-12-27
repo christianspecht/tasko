@@ -48,7 +48,7 @@ namespace Tasko.Server.Models
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentOutOfRangeException(Resources.DescriptionEmpty);
+                    throw new TaskoInvalidInputException(Resources.DescriptionEmpty);
                 }
 
                 this.description = value;
@@ -108,7 +108,7 @@ namespace Tasko.Server.Models
         {
             if (string.IsNullOrWhiteSpace(category))
             {
-                throw new ArgumentOutOfRangeException(Resources.CategoryEmpty);
+                throw new TaskoInvalidInputException(Resources.CategoryEmpty);
             }
 
             if (this.Categories == null)
@@ -127,7 +127,7 @@ namespace Tasko.Server.Models
         {
             if (this.IsFinished)
             {
-                throw new InvalidOperationException(Resources.CanBeFinishedOnlyOnce);
+                throw new TaskoInvalidInputException(Resources.CanBeFinishedOnlyOnce);
             }
 
             UpdateFinished();
@@ -140,7 +140,7 @@ namespace Tasko.Server.Models
         {
             if (!this.IsFinished)
             {
-                throw new InvalidOperationException(Resources.CanBeReopenedOnlyWhenFinished);
+                throw new TaskoInvalidInputException(Resources.CanBeReopenedOnlyWhenFinished);
             }
 
             UpdateFinished(true);

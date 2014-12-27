@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http.Filters;
+using Tasko.Server.Properties;
 
 namespace Tasko.Server
 {
@@ -8,7 +9,21 @@ namespace Tasko.Server
     {
         public override void OnException(HttpActionExecutedContext context)
         {
-            context.Response = context.Request.CreateErrorResponse(HttpStatusCode.InternalServerError, context.Exception.Message);
+            HttpStatusCode status;
+            string message;
+
+            if (context.Exception is TaskoInvalidInputException)
+            {
+                status = HttpStatusCode.BadRequest;
+                message = context.Exception.Message;
+            }
+            else
+            {
+                status = HttpStatusCode.InternalServerError;
+                message = Resources.GenericErrorMessage;
+            }
+
+            context.Response = context.Request.CreateErrorResponse(status, message);
         }
     }
 }
