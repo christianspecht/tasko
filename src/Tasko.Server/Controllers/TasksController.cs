@@ -10,18 +10,38 @@ namespace Tasko.Server.Controllers
 {
     public class TasksController : RavenController
     {
+        // GET /api/tasks
+        [ActionName("TaskInfo")]
         public IEnumerable<Task> Get()
         {
             var tasks = this.RavenSession.Query<Task>().OrderBy(t => t.Description);
             return tasks;
         }
 
+        // GET /api/tasks?category={category}
+        [ActionName("TaskInfo")]
         public IEnumerable<Task> Get(string category)
         {
             var tasks = this.RavenSession.Query<Task>().Where(t => t.Categories.Contains(category)).OrderBy(t => t.Description);
             return tasks;
         }
 
+        // GET /api/tasks?finished={finished}
+        [ActionName("TaskInfo")]
+        public IEnumerable<Task> Get(bool finished)
+        {
+            throw new NotImplementedException();
+        }
+
+        // GET /api/tasks?category={category}&finished={finished}
+        [ActionName("TaskInfo")]
+        public IEnumerable<Task> Get(string category, bool finished)
+        {
+            throw new NotImplementedException();
+        }
+
+        // GET /api/tasks/{id}
+        [ActionName("TaskInfo")]
         public Task Get(int id)
         {
             var task = this.RavenSession.Load<Task>("tasks/" + id.ToString()); 
@@ -34,6 +54,8 @@ namespace Tasko.Server.Controllers
             return task;
         }
 
+        // POST /api/tasks
+        [ActionName("TaskInfo")]
         public HttpResponseMessage Post(TaskCreateDto dto)
         {
             if (dto == null)
@@ -51,6 +73,7 @@ namespace Tasko.Server.Controllers
             return resp;
         }
 
+        // POST /api/tasks/{id}/finish
         [ActionName("Finish")]
         [HttpPost]
         public HttpResponseMessage FinishTask(int id)
@@ -67,6 +90,7 @@ namespace Tasko.Server.Controllers
             return Request.CreateResponse<Task>(HttpStatusCode.OK, task);
         }
 
+        // POST /api/tasks/{id}/reopen
         [ActionName("Reopen")]
         [HttpPost]
         public HttpResponseMessage ReopenTask(int id)
@@ -83,6 +107,33 @@ namespace Tasko.Server.Controllers
             return Request.CreateResponse<Task>(HttpStatusCode.OK, task);
         }
 
+        // PUT /api/tasks/{id}/description
+        [ActionName("Description")]
+        [HttpPut]
+        public HttpResponseMessage ChangeDescription(int id, ChangeDescriptionDto dto)
+        {
+            throw new NotImplementedException();
+        }
 
+        // GET /api/tasks/{id}/categories
+        [ActionName("Categories")]
+        public IEnumerable<string> GetCategories(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        // POST /api/tasks/{id}/categories
+        [ActionName("Categories")]
+        public HttpResponseMessage PostNewCategory(int id, PostNewCategoryDto dto)
+        {
+            throw new NotImplementedException();
+        }
+
+        // DELETE /api/tasks/{id}/categories/{category}
+        [ActionName("Categories")]
+        public HttpResponseMessage DeleteCategory(int id, string category)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

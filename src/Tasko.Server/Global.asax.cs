@@ -16,12 +16,13 @@ namespace Tasko.Server
         {
             GlobalConfiguration.Configuration.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional });
+                routeTemplate: "api/{controller}/{id}/{action}",
+                defaults: new { id = RouteParameter.Optional, action = "TaskInfo" });
 
             GlobalConfiguration.Configuration.Routes.MapHttpRoute(
-                name: "DefaultApiWithAction",
-                routeTemplate: "api/{controller}/{id}/{action}");
+                name: "DefaultApiWithCategory",
+                routeTemplate: "api/{controller}/{id}/{action}/{category}",
+                defaults: new { id = RouteParameter.Optional, action = "TaskInfo" });
 
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
