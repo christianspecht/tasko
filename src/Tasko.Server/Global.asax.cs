@@ -60,5 +60,10 @@ namespace Tasko.Server
 
             GlobalConfiguration.Configuration.MessageHandlers.Add(new AuthenticationHandler(authConfig));
         }
+
+        protected void Application_PreSendRequestHeaders(object sender, EventArgs e)
+        {
+            HttpContext.Current.Response.Headers.Remove("Server");
+        }
     }
 }
