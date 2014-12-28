@@ -266,21 +266,12 @@ So a correct request header should contain these two lines:
 
 **Response:**
 
-	{
-	  "Id": 1,
-	  "Description": "First Task",
-	  "Categories": [
+	[
 	    "Category1",
-        "Category2"
-	  ],
-	  "CreatedAt": "2013-06-09T21:02:13.78125Z",
-	  "CreatedBy": "someuser",
-	  "LastEditedAt": "2014-12-28T14:28:39.8825322Z",
-	  "LastEditedBy": "yourname",
-      "FinishedAt": null,
-      "FinishedBy": null,
-      "IsFinished": false
-	}
+	    "Category2"
+	]
+
+*(all of the task's categories)*
 
 ### Return a task's categories
 

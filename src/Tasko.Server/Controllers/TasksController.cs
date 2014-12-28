@@ -129,7 +129,7 @@ namespace Tasko.Server.Controllers
             var task = this.LoadTaskById(id);
             task.AddCategory(dto.Category);
 
-            return Request.CreateResponse<Task>(HttpStatusCode.Created, task);
+            return Request.CreateResponse<IEnumerable<string>>(HttpStatusCode.Created, task.Categories);
         }
 
         // DELETE /api/tasks/{id}/categories/{category}
