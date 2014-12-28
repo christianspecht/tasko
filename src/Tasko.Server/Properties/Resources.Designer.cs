@@ -122,5 +122,14 @@ namespace Tasko.Server.Properties {
                 return ResourceManager.GetString("GenericErrorMessage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to the request body is missing.
+        /// </summary>
+        internal static string MissingBody {
+            get {
+                return ResourceManager.GetString("MissingBody", resourceCulture);
+            }
+        }
     }
 }

@@ -254,6 +254,33 @@ So a correct request header should contain these two lines:
       "IsFinished": false
 	}
 
+### Change a task's description
+
+	PUT /api/tasks/1/description
+
+**Input:**
+
+	{
+		"Description": "new description"
+	}
+
+**Response:**
+
+	{
+	  "Id": 1,
+	  "Description": "new description",
+	  "Categories": [
+	    "Category1"
+	  ],
+	  "CreatedAt": "2013-06-09T21:02:13.78125Z",
+	  "CreatedBy": "someuser",
+      "LastEditedAt": "2014-12-28T02:45:18.6704517Z",
+      "LastEditedBy": "yourname",
+      "FinishedAt": null,
+      "FinishedBy": null,
+      "IsFinished": false
+	}
+
 ### Error Handling
 
 If any of the "writing" API calls fail because of invalid input *(for example, if you try to finish an already finished task again, or try to set an empty description)*, the API will return [status code 400](http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_Error) and a `Message` property with a clear-text error message:

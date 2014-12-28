@@ -138,4 +138,7 @@
   <data name="GenericErrorMessage" xml:space="preserve">
     <value>An error has occured.</value>
   </data>
+  <data name="MissingBody" xml:space="preserve">
+    <value>the request body is missing</value>
+  </data>
 </root>

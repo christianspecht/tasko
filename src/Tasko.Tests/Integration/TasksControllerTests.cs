@@ -232,5 +232,44 @@ namespace Tasko.Tests.Integration
                 }
             }
         }
+
+        [TestFixture]
+        public class ChangeDescription : TasksControllerTests
+        {
+            [Test]
+            public void DescriptionIsChanged()
+            {
+                int taskid;
+
+                using (var c = GetController())
+                {
+                    var resp = c.Post(GetDto("foo", "bar"));
+                    var task = GetTaskFromResponse(resp);
+                    taskid = task.Id;
+
+                    c.ChangeDescription(taskid, new ChangeDescriptionDto { Description = "test" });
+                }
+
+                using (var c = GetController())
+                {
+                    var task = c.Get(taskid);
+                    Assert.AreEqual("test", task.Description);
+                }
+
+            }
+
+            [Test]
+            public void ReturnsBadRequestWhenDtoIsNull()
+            {
+                using (var c = GetController())
+                {
+                    var resp = c.Post(GetDto("foo", "bar"));
+                    var task = GetTaskFromResponse(resp);
+
+                    var resp2 = c.ChangeDescription(task.Id, null);
+                    Assert.AreEqual(HttpStatusCode.BadRequest, resp2.StatusCode);
+                }
+            }
+        }
     }
 }

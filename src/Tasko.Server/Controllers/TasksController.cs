@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Tasko.Server.Models;
+using Tasko.Server.Properties;
 
 namespace Tasko.Server.Controllers
 {
@@ -96,7 +97,16 @@ namespace Tasko.Server.Controllers
         [HttpPut]
         public HttpResponseMessage ChangeDescription(int id, ChangeDescriptionDto dto)
         {
-            throw new NotImplementedException();
+            if (dto == null)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Resources.MissingBody);
+            }
+
+            var task = this.LoadTaskById(id);
+
+            task.Description = dto.Description;
+
+            return Request.CreateResponse<Task>(HttpStatusCode.OK, task);
         }
 
         // GET /api/tasks/{id}/categories
