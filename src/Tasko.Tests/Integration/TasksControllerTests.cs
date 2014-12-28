@@ -289,5 +289,39 @@ namespace Tasko.Tests.Integration
                 }
             }
         }
+
+        [TestFixture]
+        public class PostNewCategory : TasksControllerTests
+        {
+            [Test]
+            public void NewCategoryIsSaved()
+            {
+                using (var c = GetController())
+                {
+                    var resp = c.Post(GetDto("foo", "bar"));
+                    var task = GetTaskFromResponse(resp);
+
+                    var resp2 = c.PostNewCategory(task.Id, new PostNewCategoryDto { Category = "test" });
+                    Assert.AreEqual(HttpStatusCode.Created, resp2.StatusCode);
+
+                    var categories = c.GetCategories(task.Id);
+                    Assert.AreEqual(2, categories.Count());
+                    Assert.Contains("test", categories.ToList());
+                }
+            }
+
+            [Test]
+            public void ReturnsBadRequestWhenDtoIsNull()
+            {
+                using (var c = GetController())
+                {
+                    var resp = c.Post(GetDto("foo", "bar"));
+                    var task = GetTaskFromResponse(resp);
+
+                    var resp2 = c.PostNewCategory(task.Id, null);
+                    Assert.AreEqual(HttpStatusCode.BadRequest, resp2.StatusCode);
+                }
+            }
+        }
     }
 }

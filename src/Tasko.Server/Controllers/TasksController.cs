@@ -121,7 +121,15 @@ namespace Tasko.Server.Controllers
         [ActionName("Categories")]
         public HttpResponseMessage PostNewCategory(int id, PostNewCategoryDto dto)
         {
-            throw new NotImplementedException();
+            if (dto == null)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Resources.MissingBody);
+            }
+
+            var task = this.LoadTaskById(id);
+            task.AddCategory(dto.Category);
+
+            return Request.CreateResponse<Task>(HttpStatusCode.Created, task);
         }
 
         // DELETE /api/tasks/{id}/categories/{category}
