@@ -131,5 +131,14 @@ namespace Tasko.Server.Properties {
                 return ResourceManager.GetString("MissingBody", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to task id {0} doesn&apos;t exist.
+        /// </summary>
+        internal static string TaskDoesntExist {
+            get {
+                return ResourceManager.GetString("TaskDoesntExist", resourceCulture);
+            }
+        }
     }
 }

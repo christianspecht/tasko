@@ -55,7 +55,7 @@ namespace Tasko.Server.Controllers
         {
             if (dto == null)
             {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, Resources.MissingBody);
             }
 
             var task = new Task(dto.Description, dto.Category);
@@ -139,7 +139,8 @@ namespace Tasko.Server.Controllers
 
             if (task == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                var resp = Request.CreateErrorResponse(HttpStatusCode.NotFound, String.Format(Resources.TaskDoesntExist, id));
+                throw new HttpResponseException(resp);
             }
 
             return task;

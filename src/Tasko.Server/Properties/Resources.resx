@@ -141,4 +141,7 @@
   <data name="MissingBody" xml:space="preserve">
     <value>the request body is missing</value>
   </data>
+  <data name="TaskDoesntExist" xml:space="preserve">
+    <value>task id {0} doesn't exist</value>
+  </data>
 </root>
