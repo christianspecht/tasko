@@ -41,6 +41,14 @@ namespace Tasko.Tests.Integration
             return dto;
         }
 
+        /// <summary>
+        /// returns the Task object from the "create task" response
+        /// </summary>
+        public Task GetTaskFromResponse(HttpResponseMessage resp)
+        {
+            return resp.Content.ReadAsAsync<Task>().Result;
+        }
+
         [TestFixture]
         public class Post : TasksControllerTests
         {
@@ -74,7 +82,7 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var resp = c.Post(dto);
-                    var task = resp.Content.ReadAsAsync<Task>().Result;
+                    var task = GetTaskFromResponse(resp);
 
                     Assert.Greater(task.Id, 0);
                     Assert.AreEqual("foo", task.Description);
@@ -117,7 +125,7 @@ namespace Tasko.Tests.Integration
                 {
                     var dto = GetDto("foo", "bar");
                     var resp = c.Post(dto);
-                    var task = resp.Content.ReadAsAsync<Task>().Result;
+                    var task = GetTaskFromResponse(resp);
                     taskId = task.Id;
                     Assert.AreNotEqual(0, taskId);
                 }
@@ -197,7 +205,7 @@ namespace Tasko.Tests.Integration
                 {
                     var dto = GetDto("foo", "bar");
                     var resp = c.Post(dto);
-                    var task = resp.Content.ReadAsAsync<Task>().Result;
+                    var task = GetTaskFromResponse(resp);
                     taskid = task.Id;
                     Assert.AreNotEqual(0, taskid);
                 }

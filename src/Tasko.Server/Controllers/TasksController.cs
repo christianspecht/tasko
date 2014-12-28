@@ -44,13 +44,7 @@ namespace Tasko.Server.Controllers
         [ActionName("TaskInfo")]
         public Task Get(int id)
         {
-            var task = this.RavenSession.Load<Task>("tasks/" + id.ToString()); 
-
-            if (task == null)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
-
+            var task = this.LoadTaskById(id);
             return task;
         }
 
@@ -78,12 +72,7 @@ namespace Tasko.Server.Controllers
         [HttpPost]
         public HttpResponseMessage FinishTask(int id)
         {
-            var task = this.RavenSession.Load<Task>("tasks/" + id.ToString());
-
-            if (task == null)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
+            var task = this.LoadTaskById(id);
 
             task.Finish();
 
@@ -95,12 +84,7 @@ namespace Tasko.Server.Controllers
         [HttpPost]
         public HttpResponseMessage ReopenTask(int id)
         {
-            var task = this.RavenSession.Load<Task>("tasks/" + id.ToString());
-
-            if (task == null)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
+            var task = this.LoadTaskById(id);
 
             task.Reopen();
 
@@ -134,6 +118,21 @@ namespace Tasko.Server.Controllers
         public HttpResponseMessage DeleteCategory(int id, string category)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// helper method, loads task from DB
+        /// </summary>
+        private Task LoadTaskById(int id)
+        {
+            var task = this.RavenSession.Load<Task>("tasks/" + id.ToString());
+
+            if (task == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            return task;
         }
     }
 }
