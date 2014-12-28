@@ -1,7 +1,7 @@
 ![logo](https://bitbucket.org/christianspecht/tasko/raw/tip/img/logo128x128.png)
 
-Tasko is a simple to-do list app that you can host on your own server.  
-You can access your to-dos from everywhere with the Android app.
+Tasko is a simple to-do list app with a server backend. You can host the backend on your own server, and you can access and edit the to-dos from multiple clients.  
+The only client available so far *(but not finished yet!)* is an Android app.
 
 There are probably already hundreds of apps that can do this ([Remember the Milk](http://www.rememberthemilk.com/) for example), but this one is mainly for learning purposes (write a mobile app with a backend service).
 
