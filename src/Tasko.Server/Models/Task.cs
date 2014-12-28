@@ -138,7 +138,7 @@ namespace Tasko.Server.Models
 
             if (!this.Categories.Contains(category))
             {
-                throw new TaskoInvalidInputException(Resources.CategoryDoesntExist);
+                throw new TaskoInvalidInputException(String.Format(Resources.CategoryDoesntExist, category));
             }
 
             if (this.Categories.Count == 1)
