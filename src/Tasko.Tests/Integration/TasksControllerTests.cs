@@ -271,5 +271,23 @@ namespace Tasko.Tests.Integration
                 }
             }
         }
+
+        [TestFixture]
+        public class GetCategories : TasksControllerTests
+        {
+            [Test]
+            public void ReturnsOneCategory()
+            {
+                using (var c = GetController())
+                {
+                    var resp = c.Post(GetDto("foo", "bar"));
+                    var task = GetTaskFromResponse(resp);
+
+                    var categories = c.GetCategories(task.Id);
+                    Assert.AreEqual(1, categories.Count());
+                    Assert.Contains("bar",categories.ToList());
+                }
+            }
+        }
     }
 }

@@ -113,7 +113,8 @@ namespace Tasko.Server.Controllers
         [ActionName("Categories")]
         public IEnumerable<string> GetCategories(int id)
         {
-            throw new NotImplementedException();
+            var task = this.LoadTaskById(id);
+            return task.Categories;
         }
 
         // POST /api/tasks/{id}/categories
