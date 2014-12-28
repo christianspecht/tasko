@@ -136,7 +136,10 @@ namespace Tasko.Server.Controllers
         [ActionName("Categories")]
         public HttpResponseMessage DeleteCategory(int id, string category)
         {
-            throw new NotImplementedException();
+            var task = this.LoadTaskById(id);
+            task.DeleteCategory(category);
+
+            return Request.CreateResponse<IEnumerable<string>>(HttpStatusCode.OK, task.Categories);
         }
 
         /// <summary>

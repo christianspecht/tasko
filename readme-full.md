@@ -293,6 +293,20 @@ So a correct request header should contain these two lines:
 	    "Category2"
 	]
 
+### Delete a category from a task
+
+	DELETE /api/tasks/1/categories/Category2
+
+*(`Category2` is the category to delete)*
+
+**Response:**
+
+	[
+	    "Category1"
+	]
+
+*(the remaining categories)*
+
 ### Change a task's description
 
 	PUT /api/tasks/1/description

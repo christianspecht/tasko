@@ -323,5 +323,28 @@ namespace Tasko.Tests.Integration
                 }
             }
         }
+
+        [TestFixture]
+        public class DeleteCategory : TasksControllerTests
+        {
+            [Test]
+            public void CategoryIsDeleted()
+            {
+                using (var c = GetController())
+                {
+                    var resp = c.Post(GetDto("foo", "bar"));
+                    var task = GetTaskFromResponse(resp);
+
+                    c.PostNewCategory(task.Id, new PostNewCategoryDto { Category = "bar2" });
+
+                    var resp2 = c.DeleteCategory(task.Id, "bar");
+                    Assert.AreEqual(HttpStatusCode.OK, resp2.StatusCode);
+
+                    var categories = c.GetCategories(task.Id);
+                    Assert.AreEqual(1, categories.Count());
+                    Assert.IsFalse(categories.Contains("bar"));
+                }
+            }
+        }
     }
 }
