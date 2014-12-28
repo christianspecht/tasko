@@ -121,7 +121,7 @@ namespace Tasko.Tests.Unit
                 task.AddCategory("cat2");
 
                 Assert.AreEqual(numberOfCategories + 1, task.Categories.Count);
-                Assert.That(task.Categories.Contains("cat2"));
+                Assert.Contains("cat2", task.Categories);
             }
 
             [Test]
