@@ -140,6 +140,12 @@ namespace Tasko.Tests.Unit
                 Assert.AreNotEqual(this.lastEditedAt, task.LastEditedAt);
                 Assert.AreEqual("edituser", task.LastEditedBy);
             }
+
+            [Test]
+            public void ThrowsWhenSameCategoryIsAddedTwice()
+            {
+                Assert.Catch(() => task.AddCategory("cat1"));
+            }
         }
 
         [TestFixture]

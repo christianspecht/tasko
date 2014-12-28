@@ -106,6 +106,15 @@ namespace Tasko.Server.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to category [{0}] already exists - can&apos;t add the same category to the same task again.
+        /// </summary>
+        internal static string CategoryExists {
+            get {
+                return ResourceManager.GetString("CategoryExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to description can&apos;t be null or empty.
         /// </summary>
         internal static string DescriptionEmpty {

@@ -132,6 +132,9 @@
   <data name="CategoryEmpty" xml:space="preserve">
     <value>category can't be null or empty</value>
   </data>
+  <data name="CategoryExists" xml:space="preserve">
+    <value>category [{0}] already exists - can't add the same category to the same task again</value>
+  </data>
   <data name="DescriptionEmpty" xml:space="preserve">
     <value>description can't be null or empty</value>
   </data>

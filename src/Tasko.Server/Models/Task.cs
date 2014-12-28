@@ -116,6 +116,11 @@ namespace Tasko.Server.Models
                 this.Categories = new List<string>();
             }
 
+            if (this.Categories.Contains(category))
+            {
+                throw new TaskoInvalidInputException(String.Format(Resources.CategoryExists, category));
+            }
+
             this.Categories.Add(category);
             this.UpdateLastEdited();
         }
