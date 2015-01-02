@@ -31,7 +31,8 @@ namespace Tasko.Server.Controllers
         [ActionName("TaskInfo")]
         public IEnumerable<Task> Get(bool finished)
         {
-            throw new NotImplementedException();
+            var tasks = this.RavenSession.Query<Task>().Where(t => t.IsFinished == finished).OrderBy(t => t.Description);
+            return tasks;
         }
 
         // GET /api/tasks?category={category}&finished={finished}

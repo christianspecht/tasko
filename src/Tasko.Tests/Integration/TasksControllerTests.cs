@@ -191,6 +191,38 @@ namespace Tasko.Tests.Integration
                     Assert.AreEqual(2, tasks.Count());
                 }
             }
+
+            [Test]
+            public void LoadsFinishedAndUnfinishedTasks()
+            {
+                using (var c = GetController())
+                {
+                    var dto = GetDto("foo1", "cat1");
+                    var task = GetTaskFromResponse(c.Post(dto));
+                    int taskid1 = task.Id;
+
+                    dto = GetDto("foo2", "cat1");
+                    task = GetTaskFromResponse(c.Post(dto));
+                    int taskid2 = task.Id;
+
+                    dto = GetDto("foo3", "cat1");
+                    c.Post(dto);
+
+                    c.FinishTask(taskid1);
+                    c.FinishTask(taskid2);
+                }
+
+                using (var c = GetController())
+                {
+                    var finishedTasks = c.Get(true);
+                    Assert.IsNotNull(finishedTasks);
+                    Assert.AreEqual(2, finishedTasks.Count());
+
+                    var unfinishedTasks = c.Get(false);
+                    Assert.IsNotNull(unfinishedTasks);
+                    Assert.AreEqual(1, unfinishedTasks.Count());
+                }
+            }
         }
 
         [TestFixture]
