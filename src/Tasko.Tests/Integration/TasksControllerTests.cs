@@ -166,7 +166,7 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var tasks = c.Get();
-                    Assert.IsNotNull(tasks);
+                    Assert.IsNotEmpty(tasks);
                     Assert.AreEqual(3, tasks.Count());
                 }
             }
@@ -187,8 +187,21 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var tasks = c.Get("cat1");
-                    Assert.IsNotNull(tasks);
+                    Assert.IsNotEmpty(tasks);
                     Assert.AreEqual(2, tasks.Count());
+                }
+            }
+
+            [Test]
+            public void LoadingNonExistingCategoryReturnsEmptyIEnumerable()
+            {
+                using (var c = GetController())
+                {
+                    var dto = GetDto("foo", "cat1");
+                    c.Post(dto);
+
+                    var tasks = c.Get("cat2");
+                    Assert.IsEmpty(tasks);
                 }
             }
 
@@ -215,11 +228,11 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var finishedTasks = c.Get(true);
-                    Assert.IsNotNull(finishedTasks);
+                    Assert.IsNotEmpty(finishedTasks);
                     Assert.AreEqual(2, finishedTasks.Count());
 
                     var unfinishedTasks = c.Get(false);
-                    Assert.IsNotNull(unfinishedTasks);
+                    Assert.IsNotEmpty(unfinishedTasks);
                     Assert.AreEqual(1, unfinishedTasks.Count());
                 }
             }
