@@ -160,11 +160,15 @@ So a correct request header should contain these two lines:
 	  "IsFinished": false
 	}
 
-### Load all tasks with a specific category
+### Search tasks, filter by category and finished/unfinished
 
 	GET /api/tasks?category=Category1
+	GET /api/tasks?finished=true
+	GET /api/tasks?category=Category2&finished=false
 
 **Response:**
+
+A list of task objects, like this *(example with just one task)*:
 
 	[
 	  {
