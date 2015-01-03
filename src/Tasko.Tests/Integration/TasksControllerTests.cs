@@ -236,6 +236,58 @@ namespace Tasko.Tests.Integration
                     Assert.AreEqual(1, unfinishedTasks.Count());
                 }
             }
+
+            [Test]
+            public void LoadsFinishedAndUnfinishedTasksWithCategories()
+            {
+                int taskid1;
+                int taskid2;
+                int taskid3;
+
+                using (var c = GetController())
+                {
+                    var dto = GetDto("foo1", "cat1");
+                    var task = GetTaskFromResponse(c.Post(dto));
+                    taskid1 = task.Id;
+
+                    dto = GetDto("foo2", "cat2");
+                    task = GetTaskFromResponse(c.Post(dto));
+                    taskid2 = task.Id;
+
+                    dto = GetDto("foo3", "cat2");
+                    task = GetTaskFromResponse(c.Post(dto));
+                    taskid3 = task.Id;
+
+                    c.FinishTask(taskid1);
+                    c.FinishTask(taskid2);
+                }
+
+                using (var c = GetController())
+                {
+                    var cat1Finished = c.Get("cat1", true);
+                    // should find taskid1
+                    Assert.IsNotEmpty(cat1Finished);
+                    Assert.AreEqual(1, cat1Finished.Count());
+                    Assert.AreEqual(taskid1, cat1Finished.First().Id);
+
+                    var cat1Unfinished = c.Get("cat1", false);
+                    // should find nothing
+                    Assert.IsEmpty(cat1Unfinished);
+                    Assert.AreEqual(0, cat1Unfinished.Count());
+
+                    var cat2Finished = c.Get("cat2", true);
+                    // should find taskid2
+                    Assert.IsNotEmpty(cat2Finished);
+                    Assert.AreEqual(1, cat2Finished.Count());
+                    Assert.AreEqual(taskid2, cat2Finished.First().Id);
+
+                    var cat2Unfinished = c.Get("cat2", false);
+                    // should find taskid3
+                    Assert.IsNotEmpty(cat2Unfinished);
+                    Assert.AreEqual(1, cat2Unfinished.Count());
+                    Assert.AreEqual(taskid3, cat2Unfinished.First().Id);
+                }
+            }
         }
 
         [TestFixture]
