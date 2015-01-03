@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("http://christianspecht.de/tasko/")]
 [assembly: AssemblyProduct("Tasko")]
-[assembly: AssemblyCopyright("Copyright © Christian Specht 2013-2014")]
+[assembly: AssemblyCopyright("Copyright © Christian Specht 2013-2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
