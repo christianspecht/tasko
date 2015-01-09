@@ -42,11 +42,11 @@ namespace Tasko.Tests.Integration
         }
 
         /// <summary>
-        /// returns the Task object from the "create task" response
+        /// returns the content from a HttpResponseMessage
         /// </summary>
-        public Task GetTaskFromResponse(HttpResponseMessage resp)
+        public T GetContentFromResponse<T>(HttpResponseMessage resp)
         {
-            return resp.Content.ReadAsAsync<Task>().Result;
+            return resp.Content.ReadAsAsync<T>().Result;
         }
 
         [TestFixture]
@@ -82,8 +82,7 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var resp = c.Post(dto);
-                    var task = GetTaskFromResponse(resp);
-
+                    var task = GetContentFromResponse<Task>(resp);
                     Assert.Greater(task.Id, 0);
                     Assert.AreEqual("foo", task.Description);
                     Assert.AreEqual("bar", task.Categories.First());
@@ -125,7 +124,7 @@ namespace Tasko.Tests.Integration
                 {
                     var dto = GetDto("foo", "bar");
                     var resp = c.Post(dto);
-                    var task = GetTaskFromResponse(resp);
+                    var task = GetContentFromResponse<Task>(resp);
                     taskId = task.Id;
                     Assert.AreNotEqual(0, taskId);
                 }
@@ -211,11 +210,11 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var dto = GetDto("foo1", "cat1");
-                    var task = GetTaskFromResponse(c.Post(dto));
+                    var task = GetContentFromResponse<Task>(c.Post(dto));
                     int taskid1 = task.Id;
 
                     dto = GetDto("foo2", "cat1");
-                    task = GetTaskFromResponse(c.Post(dto));
+                    task = GetContentFromResponse<Task>(c.Post(dto));
                     int taskid2 = task.Id;
 
                     dto = GetDto("foo3", "cat1");
@@ -247,15 +246,15 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var dto = GetDto("foo1", "cat1");
-                    var task = GetTaskFromResponse(c.Post(dto));
+                    var task = GetContentFromResponse<Task>(c.Post(dto));
                     taskid1 = task.Id;
 
                     dto = GetDto("foo2", "cat2");
-                    task = GetTaskFromResponse(c.Post(dto));
+                    task = GetContentFromResponse<Task>(c.Post(dto));
                     taskid2 = task.Id;
 
                     dto = GetDto("foo3", "cat2");
-                    task = GetTaskFromResponse(c.Post(dto));
+                    task = GetContentFromResponse<Task>(c.Post(dto));
                     taskid3 = task.Id;
 
                     c.FinishTask(taskid1);
@@ -302,7 +301,7 @@ namespace Tasko.Tests.Integration
                 {
                     var dto = GetDto("foo", "bar");
                     var resp = c.Post(dto);
-                    var task = GetTaskFromResponse(resp);
+                    var task = GetContentFromResponse<Task>(resp);
                     taskid = task.Id;
                     Assert.AreNotEqual(0, taskid);
                 }
@@ -341,7 +340,7 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var resp = c.Post(GetDto("foo", "bar"));
-                    var task = GetTaskFromResponse(resp);
+                    var task = GetContentFromResponse<Task>(resp);
                     taskid = task.Id;
 
                     c.ChangeDescription(taskid, new ChangeDescriptionDto { Description = "test" });
@@ -361,7 +360,7 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var resp = c.Post(GetDto("foo", "bar"));
-                    var task = GetTaskFromResponse(resp);
+                    var task = GetContentFromResponse<Task>(resp);
 
                     var resp2 = c.ChangeDescription(task.Id, null);
                     Assert.AreEqual(HttpStatusCode.BadRequest, resp2.StatusCode);
@@ -378,7 +377,7 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var resp = c.Post(GetDto("foo", "bar"));
-                    var task = GetTaskFromResponse(resp);
+                    var task = GetContentFromResponse<Task>(resp);
 
                     var categories = c.GetCategories(task.Id);
                     Assert.AreEqual(1, categories.Count());
@@ -396,7 +395,7 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var resp = c.Post(GetDto("foo", "bar"));
-                    var task = GetTaskFromResponse(resp);
+                    var task = GetContentFromResponse<Task>(resp);
 
                     var resp2 = c.PostNewCategory(task.Id, new PostNewCategoryDto { Category = "test" });
                     Assert.AreEqual(HttpStatusCode.Created, resp2.StatusCode);
@@ -413,7 +412,7 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var resp = c.Post(GetDto("foo", "bar"));
-                    var task = GetTaskFromResponse(resp);
+                    var task = GetContentFromResponse<Task>(resp);
 
                     var resp2 = c.PostNewCategory(task.Id, null);
                     Assert.AreEqual(HttpStatusCode.BadRequest, resp2.StatusCode);
@@ -430,7 +429,7 @@ namespace Tasko.Tests.Integration
                 using (var c = GetController())
                 {
                     var resp = c.Post(GetDto("foo", "bar"));
-                    var task = GetTaskFromResponse(resp);
+                    var task = GetContentFromResponse<Task>(resp);
 
                     c.PostNewCategory(task.Id, new PostNewCategoryDto { Category = "bar2" });
 
