@@ -8,5 +8,7 @@ namespace Tasko.Server.Models
     {
         public string Category { get; set; }
         public bool? Finished { get; set; }
+        public int PageNumber { get; set; }
+        public byte PageSize { get; set; }
     }
 }

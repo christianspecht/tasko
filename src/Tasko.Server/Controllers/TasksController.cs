@@ -117,6 +117,16 @@ namespace Tasko.Server.Controllers
         [HttpPost]
         public HttpResponseMessage CreateSearch(CreateSearchDto dto)
         {
+            if (dto.PageNumber == 0)
+            {
+                dto.PageNumber = 1;
+            }
+
+            if (dto.PageSize == 0)
+            {
+                dto.PageSize = 10;
+            }
+
             IQueryable<Task> tasks = this.RavenSession.Query<Task>();
 
             if (!string.IsNullOrWhiteSpace(dto.Category))
@@ -128,6 +138,8 @@ namespace Tasko.Server.Controllers
             {
                 tasks = tasks.Where(t => t.IsFinished == dto.Finished);
             }
+
+            tasks = tasks.Skip((dto.PageNumber - 1) * dto.PageSize).Take(dto.PageSize);
 
             tasks = tasks.OrderBy(t => t.Description);
 

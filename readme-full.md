@@ -139,11 +139,16 @@ You search for tasks *(i.e. you load a list of all tasks, with or without filter
 An object with search parameters:
 
 	{
-	    "category": "cat1",
-	    "finished": false
+	    "Category": "cat1",
+	    "Finished": false,
+    	"PageNumber": 1,
+    	"PageSize": 10
 	}
 
-All the parameters are optional. If you omit the object at all, nothing will be filtered and all tasks will be returned.
+All the parameters are optional. If you omit them all, nothing will be filtered and all tasks will be returned.  
+
+The results will always be paged. If you omit `PageNumber` and `PageSize`, the values shown above will be used by default.
+
 
 **Response:**
 
