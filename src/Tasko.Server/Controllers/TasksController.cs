@@ -11,38 +11,6 @@ namespace Tasko.Server.Controllers
 {
     public class TasksController : RavenController
     {
-        // GET /api/tasks
-        [ActionName("TaskInfo")]
-        public IEnumerable<Task> Get()
-        {
-            var tasks = this.RavenSession.Query<Task>().OrderBy(t => t.Description);
-            return tasks;
-        }
-
-        // GET /api/tasks?category={category}
-        [ActionName("TaskInfo")]
-        public IEnumerable<Task> Get(string category)
-        {
-            var tasks = this.RavenSession.Query<Task>().Where(t => t.Categories.Contains(category)).OrderBy(t => t.Description);
-            return tasks;
-        }
-
-        // GET /api/tasks?finished={finished}
-        [ActionName("TaskInfo")]
-        public IEnumerable<Task> Get(bool finished)
-        {
-            var tasks = this.RavenSession.Query<Task>().Where(t => t.IsFinished == finished).OrderBy(t => t.Description);
-            return tasks;
-        }
-
-        // GET /api/tasks?category={category}&finished={finished}
-        [ActionName("TaskInfo")]
-        public IEnumerable<Task> Get(string category, bool finished)
-        {
-            var tasks = this.RavenSession.Query<Task>().Where(t => t.Categories.Contains(category) && t.IsFinished == finished).OrderBy(t => t.Description);
-            return tasks;
-        }
-
         // GET /api/tasks/{id}
         [ActionName("TaskInfo")]
         public Task Get(int id)
@@ -142,6 +110,28 @@ namespace Tasko.Server.Controllers
             task.DeleteCategory(category);
 
             return Request.CreateResponse<IEnumerable<string>>(HttpStatusCode.OK, task.Categories);
+        }
+
+        // POST /api/tasks/search
+        [ActionName("Search")]
+        [HttpPost]
+        public HttpResponseMessage CreateSearch(CreateSearchDto dto)
+        {
+            IQueryable<Task> tasks = this.RavenSession.Query<Task>();
+
+            if (!string.IsNullOrWhiteSpace(dto.Category))
+            {
+                tasks = tasks.Where(t => t.Categories.Contains(dto.Category));
+            }
+
+            if (dto.Finished != null)
+            {
+                tasks = tasks.Where(t => t.IsFinished == dto.Finished);
+            }
+
+            tasks = tasks.OrderBy(t => t.Description);
+
+            return Request.CreateResponse<IEnumerable<Task>>(HttpStatusCode.OK, tasks.ToList());
         }
 
         /// <summary>

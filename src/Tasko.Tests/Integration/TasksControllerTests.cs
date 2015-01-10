@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -64,7 +65,9 @@ namespace Tasko.Tests.Integration
 
                 using (var c = GetController())
                 {
-                    var tasks = c.Get();
+                    var resp = c.CreateSearch(new CreateSearchDto());
+                    var tasks = this.GetContentFromResponse<IEnumerable<Task>>(resp);
+
                     Assert.That(tasks.Count() == 1);
 
                     var task = tasks.First();
@@ -164,12 +167,17 @@ namespace Tasko.Tests.Integration
 
                 using (var c = GetController())
                 {
-                    var tasks = c.Get();
+                    var resp = c.CreateSearch(new CreateSearchDto());
+                    var tasks = this.GetContentFromResponse<IEnumerable<Task>>(resp);
                     Assert.IsNotEmpty(tasks);
                     Assert.AreEqual(3, tasks.Count());
                 }
             }
+        }
 
+        [TestFixture]
+        public class CreateSearch : TasksControllerTests
+        {
             [Test]
             public void LoadTasksByCategory()
             {
@@ -185,7 +193,9 @@ namespace Tasko.Tests.Integration
 
                 using (var c = GetController())
                 {
-                    var tasks = c.Get("cat1");
+                    var resp = c.CreateSearch(new CreateSearchDto { Category = "cat1" });
+                    var tasks = this.GetContentFromResponse<IEnumerable<Task>>(resp);
+
                     Assert.IsNotEmpty(tasks);
                     Assert.AreEqual(2, tasks.Count());
                 }
@@ -199,7 +209,8 @@ namespace Tasko.Tests.Integration
                     var dto = GetDto("foo", "cat1");
                     c.Post(dto);
 
-                    var tasks = c.Get("cat2");
+                    var resp = c.CreateSearch(new CreateSearchDto { Category = "cat2" });
+                    var tasks = this.GetContentFromResponse<IEnumerable<Task>>(resp);
                     Assert.IsEmpty(tasks);
                 }
             }
@@ -226,11 +237,13 @@ namespace Tasko.Tests.Integration
 
                 using (var c = GetController())
                 {
-                    var finishedTasks = c.Get(true);
+                    var resp = c.CreateSearch(new CreateSearchDto { Finished = true });
+                    var finishedTasks = this.GetContentFromResponse<IEnumerable<Task>>(resp);
                     Assert.IsNotEmpty(finishedTasks);
                     Assert.AreEqual(2, finishedTasks.Count());
 
-                    var unfinishedTasks = c.Get(false);
+                    resp = c.CreateSearch(new CreateSearchDto { Finished = false });
+                    var unfinishedTasks = this.GetContentFromResponse<IEnumerable<Task>>(resp);
                     Assert.IsNotEmpty(unfinishedTasks);
                     Assert.AreEqual(1, unfinishedTasks.Count());
                 }
@@ -263,24 +276,28 @@ namespace Tasko.Tests.Integration
 
                 using (var c = GetController())
                 {
-                    var cat1Finished = c.Get("cat1", true);
+                    var resp = c.CreateSearch(new CreateSearchDto { Category="cat1", Finished = true });
+                    var cat1Finished = this.GetContentFromResponse<IEnumerable<Task>>(resp);
                     // should find taskid1
                     Assert.IsNotEmpty(cat1Finished);
                     Assert.AreEqual(1, cat1Finished.Count());
                     Assert.AreEqual(taskid1, cat1Finished.First().Id);
 
-                    var cat1Unfinished = c.Get("cat1", false);
+                    resp = c.CreateSearch(new CreateSearchDto { Category = "cat1", Finished = false });
+                    var cat1Unfinished = this.GetContentFromResponse<IEnumerable<Task>>(resp);
                     // should find nothing
                     Assert.IsEmpty(cat1Unfinished);
                     Assert.AreEqual(0, cat1Unfinished.Count());
 
-                    var cat2Finished = c.Get("cat2", true);
+                    resp = c.CreateSearch(new CreateSearchDto { Category = "cat2", Finished = true });
+                    var cat2Finished = this.GetContentFromResponse<IEnumerable<Task>>(resp);
                     // should find taskid2
                     Assert.IsNotEmpty(cat2Finished);
                     Assert.AreEqual(1, cat2Finished.Count());
                     Assert.AreEqual(taskid2, cat2Finished.First().Id);
 
-                    var cat2Unfinished = c.Get("cat2", false);
+                    resp = c.CreateSearch(new CreateSearchDto { Category = "cat2", Finished = false });
+                    var cat2Unfinished = this.GetContentFromResponse<IEnumerable<Task>>(resp);
                     // should find taskid3
                     Assert.IsNotEmpty(cat2Unfinished);
                     Assert.AreEqual(1, cat2Unfinished.Count());

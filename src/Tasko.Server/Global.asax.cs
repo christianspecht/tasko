@@ -15,6 +15,12 @@ namespace Tasko.Server
         protected void Application_Start(object sender, EventArgs e)
         {
             GlobalConfiguration.Configuration.Routes.MapHttpRoute(
+                name: "SearchAction",
+                routeTemplate: "api/{controller}/{action}",
+                defaults: new { },
+                constraints: new { action = @"search" });
+
+            GlobalConfiguration.Configuration.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}/{action}",
                 defaults: new { id = RouteParameter.Optional, action = "TaskInfo" });

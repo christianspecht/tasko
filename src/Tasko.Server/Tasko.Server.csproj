@@ -127,6 +127,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper.cs" />
+    <Compile Include="Models\CreateSearchDto.cs" />
     <Compile Include="Models\PostNewCategoryDto.cs" />
     <Compile Include="Models\ChangeDescriptionDto.cs" />
     <Compile Include="Models\Task.cs" />

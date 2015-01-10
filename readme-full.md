@@ -101,12 +101,53 @@ So a correct request header should contain these two lines:
 	Authorization: Session eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
 
 
-
 ### Load all tasks
 
-	GET /api/tasks
+**Note that there is no `GET /api/tasks`.  
+Please use the search feature instead (`POST /api/tasks/search`, see below)**
+
+
+### Load a single task
+
+	GET /api/tasks/1
 
 **Response:**
+
+	{
+	  "Id": 1,
+	  "Description": "First Task",
+	  "Categories": [
+	    "Category1"
+	  ],
+	  "CreatedAt": "2013-06-09T21:02:13.78125Z",
+	  "CreatedBy": "someuser",
+	  "LastEditedAt": "2013-06-09T21:02:13.78125Z",
+	  "LastEditedBy": "someuser",
+	  "FinishedAt": null,
+	  "FinishedBy": null,
+	  "IsFinished": false
+	}
+
+### Search tasks
+
+You search for tasks *(i.e. you load a list of all tasks, with or without filtering)* by creating a new search:
+
+	POST /api/tasks/search
+
+**Input (optional):**
+
+An object with search parameters:
+
+	{
+	    "category": "cat1",
+	    "finished": false
+	}
+
+All the parameters are optional. If you omit the object at all, nothing will be filtered and all tasks will be returned.
+
+**Response:**
+
+A list of task objects, like this:
 
 	[
 	  {
@@ -132,54 +173,6 @@ So a correct request header should contain these two lines:
 	    "CreatedAt": "2013-06-09T21:06:16.15625Z",
 	    "CreatedBy": "someuser",
 	    "LastEditedAt": "2013-06-09T21:06:16.15625Z",
-	    "LastEditedBy": "someuser",
-	    "FinishedAt": null,
-	    "FinishedBy": null,
-	    "IsFinished": false
-	  }
-	]
-
-### Load a single task
-
-	GET /api/tasks/1
-
-**Response:**
-
-	{
-	  "Id": 1,
-	  "Description": "First Task",
-	  "Categories": [
-	    "Category1"
-	  ],
-	  "CreatedAt": "2013-06-09T21:02:13.78125Z",
-	  "CreatedBy": "someuser",
-	  "LastEditedAt": "2013-06-09T21:02:13.78125Z",
-	  "LastEditedBy": "someuser",
-	  "FinishedAt": null,
-	  "FinishedBy": null,
-	  "IsFinished": false
-	}
-
-### Search tasks, filter by category and finished/unfinished
-
-	GET /api/tasks?category=Category1
-	GET /api/tasks?finished=true
-	GET /api/tasks?category=Category2&finished=false
-
-**Response:**
-
-A list of task objects, like this *(example with just one task)*:
-
-	[
-	  {
-	    "Id": 1,
-	    "Description": "First Task",
-	    "Categories": [
-	      "Category1"
-	    ],
-	    "CreatedAt": "2013-06-09T21:02:13.78125Z",
-	    "CreatedBy": "someuser",
-	    "LastEditedAt": "2013-06-09T21:02:13.78125Z",
 	    "LastEditedBy": "someuser",
 	    "FinishedAt": null,
 	    "FinishedBy": null,
