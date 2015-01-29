@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Raven.Client;
+using Raven.Client.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -127,7 +129,8 @@ namespace Tasko.Server.Controllers
                 dto.PageSize = 10;
             }
 
-            IQueryable<Task> tasks = this.RavenSession.Query<Task>();
+            RavenQueryStatistics stats;
+            IRavenQueryable<Task> tasks = this.RavenSession.Query<Task>().Statistics(out stats);
 
             if (!string.IsNullOrWhiteSpace(dto.Category))
             {
@@ -139,9 +142,11 @@ namespace Tasko.Server.Controllers
                 tasks = tasks.Where(t => t.IsFinished == dto.Finished);
             }
 
-            tasks = tasks.Skip((dto.PageNumber - 1) * dto.PageSize).Take(dto.PageSize);
+            tasks = tasks.Skip((dto.PageNumber - 1) * dto.PageSize).Take(dto.PageSize) as IRavenQueryable<Task>;
 
             tasks = tasks.OrderBy(t => t.Description);
+
+            int count = stats.TotalResults;  // TODO: do something with it
 
             return Request.CreateResponse<IEnumerable<Task>>(HttpStatusCode.OK, tasks.ToList());
         }
