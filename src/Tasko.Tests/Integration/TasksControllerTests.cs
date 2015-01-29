@@ -304,6 +304,49 @@ namespace Tasko.Tests.Integration
                     Assert.AreEqual(taskid3, cat2Unfinished.First().Id);
                 }
             }
+
+            [Test]
+            public void PagingWorks()
+            {
+                int taskid1;
+                int taskid2;
+                int taskid3;
+
+                using (var c = GetController())
+                {
+                    var dto = GetDto("foo1", "cat1");
+                    var task = GetContentFromResponse<Task>(c.Post(dto));
+                    taskid1 = task.Id;
+
+                    dto = GetDto("foo2", "cat2");
+                    task = GetContentFromResponse<Task>(c.Post(dto));
+                    taskid2 = task.Id;
+
+                    dto = GetDto("foo3", "cat2");
+                    task = GetContentFromResponse<Task>(c.Post(dto));
+                    taskid3 = task.Id;
+                }
+
+                using (var c = GetController())
+                {
+                    // page 1 - should contain foo1 and foo2
+                    var resp = c.CreateSearch(new CreateSearchDto { PageNumber = 1, PageSize = 2 });
+                    var results = this.GetContentFromResponse<IEnumerable<Task>>(resp).ToList();
+
+                    Assert.IsNotEmpty(results);
+                    Assert.AreEqual(2, results.Count(), "page 1 count");
+                    Assert.AreEqual(taskid1, ((Task)results[0]).Id, "task 1");
+                    Assert.AreEqual(taskid2, ((Task)results[1]).Id, "task 2");
+
+                    // page 2 - should contain foo3
+                    resp = c.CreateSearch(new CreateSearchDto { PageNumber = 2, PageSize = 2 });
+                    results = this.GetContentFromResponse<IEnumerable<Task>>(resp).ToList();
+
+                    Assert.IsNotEmpty(results);
+                    Assert.AreEqual(1, results.Count(), "page 2 count");
+                    Assert.AreEqual(taskid3, ((Task)results[0]).Id, "task 3");
+                }
+            }
         }
 
         [TestFixture]
