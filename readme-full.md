@@ -15,7 +15,9 @@ It comes with a server backend that you have to host yourself, on your own serve
 
 ## Links
 
-- Download page *(no downloads yet - Tasko isn't finished)*
+- Download page:
+	- [Tasko Server](https://bitbucket.org/christianspecht/tasko/downloads)
+	- Tasko Android Client *(not finished yet)*
 - Report a bug:
 	- [Tasko Server](https://bitbucket.org/christianspecht/tasko/issues/new)
 	- [Tasko Android Client](https://bitbucket.org/christianspecht/tasko-androidclient/issues/new)
