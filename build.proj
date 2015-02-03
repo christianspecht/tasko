@@ -35,6 +35,7 @@
 		<CallTarget Targets="Build"/>
 		<CallTarget Condition="$(RunTests) == '1'" Targets="Test"/>
 		<CallTarget Targets="CopyRelease"/>
+		<CallTarget Targets="Zip"/>
 	</Target>
 
 
@@ -71,6 +72,15 @@
 			<ReleaseFiles Include="readme.md;license.txt" />
 		</ItemGroup>
 		<Copy SourceFiles="@(ReleaseFiles)" DestinationFolder="$(ServerReleaseDir)\_readme"/>
+	</Target>
+
+
+	<!-- create zip file -->
+	<Target Name="Zip">
+		<CreateItem Include="$(ServerReleaseDir)\**\*.*" >
+			<Output ItemName="ZipFiles" TaskParameter="Include"/>
+		</CreateItem>
+		<Zip ZipFileName="$(ReleaseDir)\server-zip\tasko-$(VersionNumber).zip" WorkingDirectory="$(ServerReleaseDir)" Files="@(ZipFiles)" />
 	</Target>
 
 
