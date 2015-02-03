@@ -7,3 +7,4 @@ obj
 release
 TestResult.xml
 packages
+src/CommonAssemblyVersion.cs

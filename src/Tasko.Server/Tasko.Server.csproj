@@ -121,6 +121,9 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\CommonAssemblyVersion.cs">
+      <Link>CommonAssemblyVersion.cs</Link>
+    </Compile>
     <Compile Include="Controllers\RavenController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Global.asax.cs">
@@ -180,10 +183,19 @@
   <Import Project="$(SolutionDir)\Build\MSBuild.Community.Tasks.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+       Other similar extension points exist, see Microsoft.Common.targets. -->
   <Target Name="BeforeBuild">
+    <Time>
+      <Output TaskParameter="Year" PropertyName="Year" />
+    </Time>
+    <PropertyGroup>
+      <ProdVer>0.0</ProdVer>
+    </PropertyGroup>
+    <PropertyGroup>
+      <ProdVer Condition="'$(VersionNumber)' != ''">$(VersionNumber)</ProdVer>
+    </PropertyGroup>
+    <AssemblyInfo CodeLanguage="CS" OutputFile="..\CommonAssemblyVersion.cs" AssemblyVersion="$(ProdVer)" AssemblyFileVersion="$(ProdVer)" AssemblyCopyright="Copyright © Christian Specht 2013-$(Year)" />
   </Target>
   <Target Name="AfterBuild">
   </Target>
-  -->
 </Project>
