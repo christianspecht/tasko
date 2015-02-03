@@ -46,7 +46,13 @@
 
 	<!-- compile solution as release -->
 	<Target Name="Build">
-		<MSBuild Projects="src\Tasko.sln" Properties="Configuration=Release"/>
+		<MSBuild Projects="src\Tasko.sln" 
+				Properties="Configuration=Release;
+					DeployOnBuild=true;
+					DeployTarget=Package;
+					_PackageTempDir=$(MSBuildThisFileDirectory)\$(ServerReleaseDir);
+					PackageAsSingleFile=False;
+					AutoParameterizationWebConfigConnectionStrings=False"/>
 	</Target>
 
 
@@ -61,14 +67,10 @@
 
 	<!-- copy files to release folder -->
 	<Target Name="CopyRelease">
-		<MakeDir Directories="$(ServerReleaseDir)"/>
 		<ItemGroup>
-			<ReleaseFiles
-				Include="$(ServerOutDir)\*.*"
-				Exclude="$(ServerOutDir)\*.pdb">
-			</ReleaseFiles>
+			<ReleaseFiles Include="readme.md;license.txt" />
 		</ItemGroup>
-		<Copy SourceFiles="@(ReleaseFiles)" DestinationFolder="$(ServerReleaseDir)"/>
+		<Copy SourceFiles="@(ReleaseFiles)" DestinationFolder="$(ServerReleaseDir)\_readme"/>
 	</Target>
 
 
