@@ -339,6 +339,19 @@ If any of the "writing" API calls fail because of invalid input *(for example, i
 
 ---
 
+## Development
+
+### How to build
+
+- Tasko Server:
+	- Run `build-and-run-tests.bat` in the main folder.  
+	  This will build the project, run all unit and integration tests and create a `release` subfolder with the binaries.
+- Tasko Android Client:
+	- Run `build.bat` in the main folder.  
+	  This will [build the project via Gradle](http://stackoverflow.com/a/24469794/6884). The APK files are in the `\app\build\outputs\apk` subfolder.
+
+---
+
 ### Acknowledgements
 
 Tasko makes use of the following open source projects:
