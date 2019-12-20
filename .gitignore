@@ -1,0 +1,10 @@
+syntax: glob
+Thumbs.db
+*.user
+*.suo
+bin
+obj
+release
+TestResult.xml
+packages
+src/CommonAssemblyVersion.cs
