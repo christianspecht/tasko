@@ -1,4 +1,4 @@
-![logo](https://bitbucket.org/christianspecht/tasko/raw/tip/img/logo128x128.png)
+![logo](https://raw.githubusercontent.com/christianspecht/tasko/master/img/logo128x128.png)
 
 Tasko is a simple to-do list app with a server backend. You can host the backend on your own server, and you can access and edit the to-dos from multiple clients.  
 The only client available so far *(but not finished yet!)* is an Android app.
@@ -16,14 +16,14 @@ It comes with a server backend that you have to host yourself, on your own serve
 ## Links
 
 - Download page:
-	- [Tasko Server](https://bitbucket.org/christianspecht/tasko/downloads)
+	- [Tasko Server](https://github.com/christianspecht/tasko/releases)
 	- Tasko Android Client *(not finished yet)*
 - Report a bug:
-	- [Tasko Server](https://bitbucket.org/christianspecht/tasko/issues/new)
-	- [Tasko Android Client](https://bitbucket.org/christianspecht/tasko-androidclient/issues/new)
-- Project pages on Bitbucket:
-	- [Tasko Server](https://bitbucket.org/christianspecht/tasko)	
-	- [Tasko Android Client](https://bitbucket.org/christianspecht/tasko-androidclient)
+	- [Tasko Server](https://github.com/christianspecht/tasko/issues/new)
+	- [Tasko Android Client](https://github.com/christianspecht/tasko-androidclient/issues/new)
+- Project pages on GitHub:
+	- [Tasko Server](https://github.com/christianspecht/tasko)	
+	- [Tasko Android Client](https://github.com/christianspecht/tasko-androidclient)
 
 ---
 
@@ -69,7 +69,7 @@ Just create a new document *(**New** -> **New Document** in the top navigation b
 
 Here's how it should look like for the user **yourname**:
 
-![new user](https://bitbucket.org/christianspecht/tasko/raw/tip/img/newuser.png)
+![new user](https://raw.githubusercontent.com/christianspecht/tasko/master/img/newuser.png)
 
 ---
 
@@ -368,11 +368,11 @@ Tasko makes use of the following open source projects:
 
 ### License
 
-Tasko and the Tasko Android client are licensed under the MIT License. See [License.txt](https://bitbucket.org/christianspecht/tasko/raw/tip/License.txt) for details.
+Tasko and the Tasko Android client are licensed under the MIT License. See [License.txt](https://github.com/christianspecht/tasko/blob/master/License.txt) for details.
 
 ---
 
 ### Project Info
 
-<script type="text/javascript" src="http://www.ohloh.net/p/633484/widgets/project_basic_stats.js"></script>  
-<script type="text/javascript" src="http://www.ohloh.net/p/633484/widgets/project_languages.js"></script>
+<script type='text/javascript' src='https://www.openhub.net/p/tasko/widgets/project_basic_stats?format=js'></script> 
+<script type='text/javascript' src='https://www.openhub.net/p/tasko/widgets/project_languages?format=js'></script>
